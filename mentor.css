@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #0d2d35;
+    color: #ffffff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: #09232A;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #484644;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    text-align: center;
+    color: #C8A92A;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #C8A92A;
+    font-size: 1.2rem;
+}
+
+.card {
+    margin-top: 20px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #8a9ea2;
+    font-size: 14px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #484644;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #143138;
+    color: white;
+    outline: none;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #C8A92A;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    width: 150px;
+    padding: 10px;
+    background-color: #C8A92A;
+    color: #09232A;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    text-transform: uppercase;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #b09425;
+}
+
+.view {
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #484644;
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #0d2d35;
+    color: #C8A92A;
+}
+
+tr:nth-child(even) {
+    background-color: #143138;
+}
+
+td {
+    color: #ffffff;
+}
+
+td:last-child {
+    font-weight: bold;
+    color: #C8A92A;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;
+    }
+}

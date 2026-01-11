@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>document</title>
+    <link rel="stylesheet" href="design.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <form>
+        <div class="search">
+            <span class="search-icon material-symbols-outlined">search</span>
+            <input class="search-input" type="search" placeholder="Alumni Search">
+        </div>
+    </form>
+
+    <div class="message-container">
+        <button id="chatBtn" class="chat-circle-btn">
+            <span class="material-symbols-outlined">chat</span>
+        </button>
+    </div>
+
+    <div class="main-chat-layout" id="mainLayout" style="display: none;">
+        <div class="contacts" id="contact_list">
+            <h3>Chats</h3>
+            <div class="contact active" data-user="yoshenan" onclick="selectContact(this)">
+                <span class="avatar">YS</span>
+                <div class="contact-info">
+                    <span class="name">Yoshenan</span>
+                    <span class="notification">Online</span>
+                </div>
+            </div>
+
+            <div class="contact" data-user="chris" onclick="selectContact(this)">
+                <span class="avatar">CE</span>
+                <div class="contact-info">
+                    <span class="name">Chris Evans</span>
+                    <span class="notification">2 new messages</span>
+                </div>
+            </div>
+
+            <div class="contact" data-user="emily" onclick="selectContact(this)">
+                <span class="avatar">EC</span>
+                <div class="contact-info">
+                    <span class="name">Emily Carter</span>
+                    <span class="notification">Seen 5m ago</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-wrapper" id="chatWrapper">
+            <div id="chat-box"></div>
+            <div class="input-section">
+                <div class="input-container">
+                    <div class="input-row">
+                        <input type="text" id="user-input" placeholder="Type your message">
+                        <button class="send-btn" onclick="sendMessage('sent')">Send</button>
+                    </div>
+                    <hr style="border: 0.5px solid #484644; width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Dashboard</title>
+    <link rel="stylesheet" href="mentor.css">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Mentorship Dashboard</h1>
+</div>
+
+<div class="card container">
+    <form class="form" onsubmit="display(event)">
+        <h2>Mentorship Request</h2>
+
+        <label>Mentor Name</label>
+        <input type="text" id="mentorName" placeholder="Enter mentor name" required>
+
+        <label>Area of Interest</label>
+        <select id="interest" required>
+            <option value="">Select area</option>
+            <option>Career Guidance</option>
+            <option>Software Development</option>
+            <option>Data Science</option>
+            <option>Cybersecurity</option>
+            <option>Game Development</option>
+        </select>
+
+        <label>Preferred Communication</label>
+        <select id="comm" required>
+            <option>Online Meeting</option>
+            <option>Physical Meeting</option>
+        </select>
+
+        <label>Message</label>
+        <textarea placeholder="Describe your mentorship needs"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="view container">
+    <h2>View Mentorship Requests</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Mentor Name</th>
+                <th>Area of Interest</th>
+                <th>Preferred Communication</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="requestTable">
+           
+            <tr>
+                <td>yosh</td>
+                <td>Career Guidance</td>
+                <td>Online Meeting</td>
+                <td>Pending</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function display(event) {
+    event.preventDefault();
+
+    let mentor_name = document.getElementById("mentorName").value;
+    let interest = document.getElementById("interest").value;
+    let communication = document.getElementById("comm").value;
+
+    let table = document.getElementById("requestTable");
+    let row = table.insertRow();
+
+    row.insertCell(0).innerText = mentor_name;
+    row.insertCell(1).innerText = interest;
+    row.insertCell(2).innerText = communication;
+    row.insertCell(3).innerText = "Pending";
+
+    document.querySelector(".form").reset();
+
+    alert("Mentorship request submitted successfully!");
+}
+</script>
+
+</body>
+</html>
