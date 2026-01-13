@@ -1,0 +1,29 @@
+/* Basic CSS for dashboard.html */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+}
+
+/* Navigation later */
+nav {
+    margin-bottom: 20px;
+}
+
+section {
+    display: flex;
+    gap: 20px;
+}
+
+section div {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+}
+
+h3 {
+    font-size: 2em;
+    margin: 0;
+}
