@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Event - Skeleton</title>
+    <link rel="stylesheet" href="event-request.css">
+</head>
+<body>
+
+    <nav>
+        <!-- Navigation -->
+        <ul>
+            <!-- Blank for now -->
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <h1>Request a New Event</h1>
+        </header>
+
+        <!-- NOTE: Retrieve data using 'name' attributes -->
+        <form action="#" method="POST">
+            
+            <div>
+                <label>Event Name:</label>
+                <input type="text" name="event_name" required>
+            </div>
+
+            <div>
+                <label>Date:</label>
+                <input type="date" name="event_date" required>
+            </div>
+
+            <div>
+                <label>Time:</label>
+                <input type="time" name="event_time" required>
+            </div>
+
+            <div>
+                <label>Location:</label>
+                <input type="text" name="location" required>
+            </div>
+
+            <div>
+                <label>Description:</label>
+                <textarea name="description" required></textarea>
+            </div>
+
+            <div>
+                <button type="submit">Submit Request</button>
+                <button type="reset">Clear</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 University Event System</p>
+    </footer>
+
+</body>
+</html>

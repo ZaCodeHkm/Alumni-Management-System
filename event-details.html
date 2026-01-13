@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - Skeleton</title>
+    <link rel="stylesheet" href="event-details.css">
+</head>
+<body>
+
+    <nav>
+        <!-- Navigation -->
+        <ul>
+            <!-- Blank for now -->
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <h1 id="detail-title">CES 2026</h1>
+        </header>
+
+        <section>
+            <h3>Information</h3>
+            <p><strong>Date:</strong> <span id="detail-date">January 25, 2026</span></p>
+            <p><strong>Location:</strong> <span id="detail-location">Grand Hall</span></p>
+            <p><strong>About:</strong> This symposium is about Coding and Programming.</p>
+
+            <!-- Join Form -->
+            <form action="#" method="POST">
+                <input type="hidden" name="event_id" value="1">
+                <button type="submit">Join This Event</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>Comments</h3>
+            <div id="comments-list">
+                <!-- Backend loops comments here -->
+                <p><strong>John:</strong> The event is ass.</p>
+            </div>
+
+            <!-- Add Comment Form -->
+            <form action="#" method="POST">
+                <textarea name="comment_text" placeholder="Write a comment..." required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 University Event System</p>
+    </footer>
+
+</body>
+</html>
