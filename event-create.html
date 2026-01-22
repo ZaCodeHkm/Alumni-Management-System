@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events</title>
+    <link rel="stylesheet" href="event-create.css">
+</head>
+
+<body>
+    <div class="page_name">
+        <h1>Manage Events</h1>
+    </div>
+
+    <div class="event_form_container">
+        <form class="event_form">
+            <h2 style="display:inline">Create Event</h2>
+            <a href="event-request-list.html" class="event_request_link" style="display:inline; float:right;">Event Requests</a>
+            <label>Event Title</label>
+                <input id="eventTitle" type="text" placeholder="Enter event title..." required>
+
+            <label>Description</label>
+                <input id="eventDesc" type="text" placeholder="Enter event description..." required>
+
+            <label>Date</label>
+                <input id="eventDate" type="date" required>
+
+            <label>Start Time</label>
+                <input id="eventTime" type="time" required>
+            <label>End Time</label>
+                <input id="eventTime" type="time" required>
+
+            <label>Venue</label>
+                <input id="eventLocation" type="text" placeholder="Enter location details..." required>
+
+            <label>Type</label>
+                <select type="text" required>
+                    <option>Physical</option>
+                    <option>Online</option>
+                </select>
+
+            <label>Visibility</label>
+                <select type="text" required>
+                    <option>All</option>
+                    <option>Alumni</option>
+                    <option>Students</option>
+                </select>
+
+            <label>Capacity</label>
+                <input id="eventCapacity" type="text" placeholder="Enter event max capacity..." required>
+
+            <div class="buttonContainer">
+                <a class="cancelButton" href="events.html"><b>Cancel</b></a>
+                <button class="submitButton" type="submit"><b>Submit</b></button>
+        </form>
+    </div>
+
+</body>
+
+<footer>Alumni Engagement System</footer>
+
+</html>

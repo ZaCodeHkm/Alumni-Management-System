@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Editing</title>
+    <link rel="stylesheet" href="job-edit.css">
+</head>
+
+<body>
+    <div class="page_name">
+        <h1>Job Edit Form</h1>
+    </div>
+
+    <div class="job_form_container">
+        <form class="job_form">
+            <h2 style="display:inline">Job Details</h2>
+            <a href="job-list.html" class="job_list_link" style="display:inline; float:right;">View All Jobs</a>
+            <label>Job Title</label>
+                <input id="jobTitle" type="text" placeholder="Enter job title..." required>
+
+            <label>Company Name</label>
+                <input id="companyName" type="text" placeholder="Enter company name..." required>
+
+            <label>Description</label>
+                <input id="jobDesc" type="text" placeholder="Enter job description..." required>
+                
+            <div class="buttonContainer">
+                <a class="cancelButton" href="job-list.html"><b>Cancel</b></a>
+                <button class="submitButton" type="submit"><b>Submit</b></button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<footer>Alumni Engagement System</footer>
+
+</html>
