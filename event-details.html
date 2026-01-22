@@ -22,9 +22,18 @@
 
         <section>
             <h3>Information</h3>
+            <a href="event-edit.html" class="editButton">Edit Event</a> <!-- Completed version will send current event data to Edit event page.-->
+            <button class="deleteButton" type="Submit">Delete Event</button> <!-- Completed version will send a delete inquiry to the backend.-->
+            <a href="event-attendees.html" class="attendeesButton">View Event Attendees</a> <!--For admin/ event manager only-->
+            
+            
             <p><strong>Date:</strong> <span id="detail-date">January 25, 2026</span></p>
+            <p><strong>Time:</strong> <span id="detail-date">9:00 AM to 6:00 PM</span></p>
             <p><strong>Location:</strong> <span id="detail-location">Grand Hall</span></p>
+            <p><strong>Capacity:</strong> <span id="detail-location">100pax</span></p>
             <p><strong>About:</strong> This symposium is about Coding and Programming.</p>
+            <p><strong>Visibility:</strong> Alumni</p>
+
 
             <!-- Join Form -->
             <form action="#" method="POST">
@@ -33,11 +42,19 @@
             </form>
         </section>
 
+        <section>            
+            <p class="creationDetails">Created by: Event Manager</p>
+            <p class="creationDetails">Created at: February 20, 2025</p>
+            <p class="approvalDetails">Approved by: Event Manager</p>
+            <p class="approvalDetails">Approved at: March 27, 2025</p>
+
+        </section>
+
         <section>
             <h3>Comments</h3>
             <div id="comments-list">
                 <!-- Backend loops comments here -->
-                <p><strong>John:</strong> The event is ass.</p>
+                <p><strong>John:</strong> The event is boring.</p>
             </div>
 
             <!-- Add Comment Form -->
