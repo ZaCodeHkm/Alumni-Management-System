@@ -51,7 +51,7 @@
             </section>
         </div>
 
-        <!-- View-only table (Admin cannot approve/reject) -->
+        <!-- Admin can edit/delete mentorship listings (no approve/reject) -->
         <div class="container">
             <h2>All Mentorship Requests</h2>
 
@@ -65,6 +65,7 @@
                         <th>Communication</th>
                         <th>Status</th>
                         <th>Date</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,10 @@
                         <td>Online Meeting</td>
                         <td>Pending</td>
                         <td>Jan 20, 2026</td>
+                        <td>
+                            <button class="btn">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>Jane Smith</td>
@@ -85,6 +90,10 @@
                         <td>Physical Meeting</td>
                         <td style="color: var(--accent);">Approved</td>
                         <td>Jan 18, 2026</td>
+                        <td>
+                            <button class="btn">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>Mike Johnson</td>
@@ -94,6 +103,10 @@
                         <td>Online Meeting</td>
                         <td>Pending</td>
                         <td>Jan 15, 2026</td>
+                        <td>
+                            <button class="btn">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>Sarah Lee</td>
@@ -103,6 +116,10 @@
                         <td>Online Meeting</td>
                         <td style="color: #c9302c;">Rejected</td>
                         <td>Jan 10, 2026</td>
+                        <td>
+                            <button class="btn">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Admin Navbar (view-only for jobs - only Alumni can post/apply) -->
+    <!-- Admin Navbar (Admins can edit/delete job listings) -->
     <nav class="navbar">
         <a href="events-admin.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
@@ -27,10 +27,10 @@
         <h1 class="page-title">Job Postings</h1>
 
         <div class="container">
-            <p>View job postings in the system. Note: Only alumni can create and apply for job postings.</p>
+            <p>Manage job postings in the system. Note: Only alumni can create and apply for job postings.</p>
         </div>
 
-        <!-- Job List Container (view only - no post/apply buttons) -->
+        <!-- Job List Container (admin can edit/delete) -->
         <section class="list-container">
 
             <article class="list-item">
@@ -41,6 +41,10 @@
                 <p><strong>Company:</strong> <span class="companyName">SE Malaysia</span></p>
                 <p><strong>Description:</strong> <span class="jobDescription">Web app development using well-known frameworks</span></p>
                 <p><strong>Posted by:</strong> Alumni User</p>
+                <div class="button-container">
+                    <button class="btn">Edit Listing</button>
+                    <button class="btn btn-danger">Delete Listing</button>
+                </div>
             </article>
 
             <article class="list-item">
@@ -51,6 +55,10 @@
                 <p><strong>Company:</strong> <span class="companyName">ScapeGoat Ltd.</span></p>
                 <p><strong>Description:</strong> <span class="jobDescription">Executive expert at falling.</span></p>
                 <p><strong>Posted by:</strong> Alumni User</p>
+                <div class="button-container">
+                    <button class="btn">Edit Listing</button>
+                    <button class="btn btn-danger">Delete Listing</button>
+                </div>
             </article>
 
         </section>

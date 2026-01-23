@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Admin Navbar (view-only) -->
+    <!-- Admin Navbar (can edit/delete) -->
     <nav class="navbar">
         <a href="events-admin.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
@@ -42,10 +42,12 @@
                 <p class="creation-details"><strong>Date created:</strong> January 25, 2026</p>
             </section>
 
-            <!-- Admin view-only - no apply button -->
-            <div class="button-container">
-                <a href="job-list.html" class="btn btn-secondary">Back to Jobs</a>
-            </div>
+        <!-- Admin actions -->
+        <div class="button-container">
+            <a href="job-list.html" class="btn btn-secondary">Back to Jobs</a>
+            <button class="btn">Edit Listing</button>
+            <button class="btn btn-danger">Delete Listing</button>
+        </div>
         </div>
     </main>
 

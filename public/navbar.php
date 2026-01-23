@@ -45,10 +45,10 @@ if ($role === 'student') {
             <a href="<?php echo $mentorshipPage; ?>">Mentorship</a>
         <?php endif; ?>
 
-        <!-- Jobs - Alumni (can post/apply), Admin (view), Event Manager (view) -->
+        <!-- Jobs - Alumni (can post/apply), Admin (view) -->
         <?php if ($role === 'alumni'): ?>
             <a href="<?php echo $jobsPage; ?>">Jobs</a>
-        <?php elseif (in_array($role, ['admin', 'event_manager'])): ?>
+        <?php elseif ($role === 'admin'): ?>
             <a href="job-list.php">Jobs</a>
         <?php endif; ?>
 
