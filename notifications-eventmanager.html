@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Event Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Event Manager Navbar -->
+    <nav class="navbar">
+        <a href="events-eventmanager.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-eventmanager.html">Events</a>
+            <a href="job-list-eventmanager.html">Jobs</a>
+            <a href="dashboard-eventmanager.html">Dashboard</a>
+            <a href="notifications-eventmanager.html" class="active">Notifications</a>
+            <a href="profile.html" class="navbar-profile">E</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Send Site-wide Notification</h1>
+            <p class="text-secondary">Event managers can broadcast announcements to all users.</p>
+        </div>
+
+        <div class="container">
+            <form class="form">
+                <h2>Notification Details</h2>
+
+                <label>Title</label>
+                <input type="text" name="notification_title" placeholder="Enter notification title..." required>
+
+                <label>Message</label>
+                <textarea name="notification_message" placeholder="Write the notification message..." required></textarea>
+
+                <label>Audience</label>
+                <select name="notification_audience" required>
+                    <option>All Users</option>
+                    <option>Students</option>
+                    <option>Alumni</option>
+                </select>
+
+                <div class="button-container">
+                    <button class="btn btn-secondary" type="reset">Clear</button>
+                    <button class="btn" type="submit">Send Notification</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Recent Notifications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Audience</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Venue Change</td>
+                        <td>All Users</td>
+                        <td>Jan 22, 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Event Volunteers Needed</td>
+                        <td>Alumni</td>
+                        <td>Jan 17, 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
+
+</body>
+</html>

@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Details</title>
+    <title>Event Details - Admin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Note: Include appropriate navbar based on user role -->
-    <!-- Student navbar shown here -->
+    <!-- Admin Navbar -->
     <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
+        <a href="events-admin.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events.html" class="active">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html">Mentorship</a>
-            <a href="profile.html" class="navbar-profile">U</a>
+            <a href="events-admin.html" class="active">Events</a>
+            <a href="search-admin.html">Search</a>
+            <a href="mentorship-admin.html">Mentorship</a>
+            <a href="job-list.html">Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="notifications-admin.html">Notifications</a>
+            <a href="user-check.html">Users</a>
+            <a href="profile.html" class="navbar-profile">A</a>
         </div>
     </nav>
 
@@ -26,18 +29,20 @@
 
             <section class="details-section">
                 <h3>Event Information</h3>
+                
+                <!-- Admin Action Buttons -->
+                <div class="button-container mb-20">
+                    <a href="event-edit.html" class="btn">Edit Event</a>
+                    <button class="btn btn-danger" type="submit">Delete Event</button>
+                    <a href="event-attendees.html" class="btn btn-secondary">View Attendees</a>
+                </div>
+
                 <p><strong>Date:</strong> <span id="detail-date">January 25, 2026</span></p>
                 <p><strong>Time:</strong> <span id="detail-time">9:00 AM to 6:00 PM</span></p>
                 <p><strong>Location:</strong> <span id="detail-location">Grand Hall</span></p>
                 <p><strong>Capacity:</strong> <span id="detail-capacity">100 pax</span></p>
                 <p><strong>About:</strong> This symposium is about Coding and Programming.</p>
                 <p><strong>Visibility:</strong> Alumni</p>
-
-                <!-- Join Form -->
-                <form action="#" method="POST" class="mt-20">
-                    <input type="hidden" name="event_id" value="1">
-                    <button type="submit" class="btn">Join This Event</button>
-                </form>
             </section>
 
             <section class="details-section">

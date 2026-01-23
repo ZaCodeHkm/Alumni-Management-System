@@ -3,61 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Event - Skeleton</title>
-    <link rel="stylesheet" href="event-request.css">
+    <title>Request Event - Alumni</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav>
-        <!-- Navigation -->
-        <ul>
-            <!-- Blank for now -->
-        </ul>
+    <!-- Alumni Navbar (only Alumni can request events) -->
+    <nav class="navbar">
+        <a href="events-alumni.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-alumni.html" class="active">Events</a>
+            <a href="search-alumni.html">Search</a>
+            <a href="mentorship-alumni.html">Mentorship</a>
+            <a href="job-list-alumni.html">Jobs</a>
+            <a href="profile.html" class="navbar-profile">U</a>
+        </div>
     </nav>
 
     <main>
-        <header>
-            <h1>Request a New Event</h1>
-        </header>
+        <h1 class="page-title">Request a New Event</h1>
 
-        <!-- NOTE: Retrieve data using 'name' attributes -->
-        <form action="#" method="POST">
-            
-            <div>
-                <label>Event Name:</label>
-                <input type="text" name="event_name" required>
-            </div>
+        <div class="container">
+            <!-- NOTE: Retrieve data using 'name' attributes -->
+            <form action="#" method="POST" class="form">
+                <h2>Event Request Form</h2>
+                
+                <label>Event Name</label>
+                <input type="text" name="event_name" placeholder="Enter event name..." required>
 
-            <div>
-                <label>Date:</label>
-                <input type="date" name="event_date" required>
-            </div>
+                <label>Date</label>
+                <input type="date" name="event_date" class="input-half" required>
 
-            <div>
-                <label>Time:</label>
-                <input type="time" name="event_time" required>
-            </div>
+                <label>Time</label>
+                <input type="time" name="event_time" class="input-half" required>
 
-            <div>
-                <label>Location:</label>
-                <input type="text" name="location" required>
-            </div>
+                <label>Location</label>
+                <input type="text" name="location" placeholder="Enter location..." required>
 
-            <div>
-                <label>Description:</label>
-                <textarea name="description" required></textarea>
-            </div>
+                <label>Description</label>
+                <textarea name="description" placeholder="Describe your event..." required></textarea>
 
-            <div>
-                <button type="submit">Submit Request</button>
-                <button type="reset">Clear</button>
-            </div>
-
-        </form>
+                <div class="button-container">
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                    <button type="submit" class="btn">Submit Request</button>
+                </div>
+            </form>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 University Event System</p>
+        <p>&copy; 2026 Alumni Engagement System</p>
     </footer>
 
 </body>

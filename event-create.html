@@ -3,60 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Events</title>
-    <link rel="stylesheet" href="event-create.css">
+    <title>Create Event - Admin</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="page_name">
-        <h1>Manage Events</h1>
-    </div>
 
-    <div class="event_form_container">
-        <form class="event_form">
-            <h2 style="display:inline">Create Event</h2>
-            <a href="event-request-list.html" class="event_request_link" style="display:inline; float:right;">Event Requests</a>
-            <label>Event Title</label>
+    <!-- Admin Navbar -->
+    <nav class="navbar">
+        <a href="events-admin.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-admin.html" class="active">Events</a>
+            <a href="search-admin.html">Search</a>
+            <a href="mentorship-admin.html">Mentorship</a>
+            <a href="job-list.html">Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="notifications-admin.html">Notifications</a>
+            <a href="user-check.html">Users</a>
+            <a href="profile.html" class="navbar-profile">A</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1 class="page-title">Create Event</h1>
+
+        <div class="container">
+            <form class="form">
+                <div class="flex-between mb-20">
+                    <h2>Event Details</h2>
+                    <a href="event-request-list.html" class="card-link">View Event Requests</a>
+                </div>
+
+                <label>Event Title</label>
                 <input id="eventTitle" type="text" placeholder="Enter event title..." required>
 
-            <label>Description</label>
-                <input id="eventDesc" type="text" placeholder="Enter event description..." required>
+                <label>Description</label>
+                <textarea id="eventDesc" placeholder="Enter event description..." required></textarea>
 
-            <label>Date</label>
-                <input id="eventDate" type="date" required>
+                <label>Date</label>
+                <input id="eventDate" type="date" class="input-half" required>
 
-            <label>Start Time</label>
-                <input id="eventTime" type="time" required>
-            <label>End Time</label>
-                <input id="eventTime" type="time" required>
+                <label>Start Time</label>
+                <input id="eventStartTime" type="time" class="input-half" required>
 
-            <label>Venue</label>
+                <label>End Time</label>
+                <input id="eventEndTime" type="time" class="input-half" required>
+
+                <label>Venue</label>
                 <input id="eventLocation" type="text" placeholder="Enter location details..." required>
 
-            <label>Type</label>
-                <select type="text" required>
+                <label>Type</label>
+                <select required>
                     <option>Physical</option>
                     <option>Online</option>
                 </select>
 
-            <label>Visibility</label>
-                <select type="text" required>
+                <label>Visibility</label>
+                <select required>
                     <option>All</option>
                     <option>Alumni</option>
                     <option>Students</option>
                 </select>
 
-            <label>Capacity</label>
-                <input id="eventCapacity" type="text" placeholder="Enter event max capacity..." required>
+                <label>Capacity</label>
+                <input id="eventCapacity" type="number" placeholder="Enter event max capacity..." required>
 
-            <div class="buttonContainer">
-                <a class="cancelButton" href="events.html"><b>Cancel</b></a>
-                <button class="submitButton" type="submit"><b>Submit</b></button>
-        </form>
-    </div>
+                <div class="button-container">
+                    <a href="events-admin.html" class="btn btn-secondary">Cancel</a>
+                    <button class="btn" type="submit">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
 
 </body>
-
-<footer>Alumni Engagement System</footer>
-
 </html>

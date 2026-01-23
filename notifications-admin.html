@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Admin Navbar -->
+    <nav class="navbar">
+        <a href="events-admin.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-admin.html">Events</a>
+            <a href="search-admin.html">Search</a>
+            <a href="mentorship-admin.html">Mentorship</a>
+            <a href="job-list.html">Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="notifications-admin.html" class="active">Notifications</a>
+            <a href="user-check.html">Users</a>
+            <a href="profile.html" class="navbar-profile">A</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Send Site-wide Notification</h1>
+            <p class="text-secondary">Admins can broadcast announcements to all users.</p>
+        </div>
+
+        <div class="container">
+            <form class="form">
+                <h2>Notification Details</h2>
+
+                <label>Title</label>
+                <input type="text" name="notification_title" placeholder="Enter notification title..." required>
+
+                <label>Message</label>
+                <textarea name="notification_message" placeholder="Write the notification message..." required></textarea>
+
+                <label>Audience</label>
+                <select name="notification_audience" required>
+                    <option>All Users</option>
+                    <option>Students</option>
+                    <option>Alumni</option>
+                    <option>Event Managers</option>
+                </select>
+
+                <div class="button-container">
+                    <button class="btn btn-secondary" type="reset">Clear</button>
+                    <button class="btn" type="submit">Send Notification</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Recent Notifications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Audience</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>System Maintenance</td>
+                        <td>All Users</td>
+                        <td>Jan 20, 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Career Fair Reminder</td>
+                        <td>Students</td>
+                        <td>Jan 18, 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
+
+</body>
+</html>

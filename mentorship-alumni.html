@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentorship Dashboard</title>
+    <title>Mentorship Dashboard - Alumni</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Note: Both Students and Alumni can access this page -->
-    <!-- Use navbar.php include in PHP version -->
+    <!-- Alumni Navbar -->
     <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
+        <a href="events-alumni.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events.html">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html" class="active">Mentorship</a>
+            <a href="events-alumni.html">Events</a>
+            <a href="search-alumni.html">Search</a>
+            <a href="mentorship-alumni.html" class="active">Mentorship</a>
+            <a href="job-list-alumni.html">Jobs</a>
             <a href="profile.html" class="navbar-profile">U</a>
         </div>
     </nav>
@@ -97,9 +97,8 @@
             </table>
         </div>
 
-        <!-- Incoming Requests Section - Only visible to Alumni -->
-        <!-- In PHP version, wrap this in: <?php if ($role === 'alumni'): ?> -->
-        <div class="container" id="incomingRequests" style="display: none;">
+        <!-- Incoming Requests Section - Alumni only -->
+        <div class="container" id="incomingRequests" style="display: block;">
             <h2>Incoming Mentorship Requests</h2>
             <p class="text-secondary">Requests from students and other alumni seeking your mentorship.</p>
 
@@ -169,10 +168,6 @@
 
         alert("Mentorship request submitted successfully!");
     }
-
-    // For demo: Show incoming requests section (in PHP, this would be controlled by role)
-    // Uncomment the line below to show incoming requests for testing
-    // document.getElementById('incomingRequests').style.display = 'block';
     </script>
 
 </body>

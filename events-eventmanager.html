@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Events - Student</title>
+    <title>Manage Events - Event Manager</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Student Navbar: Events, Search, Mentorship, Profile (NO Jobs) -->
+    <!-- Event Manager Navbar: Events, Jobs, Dashboard -->
     <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
+        <a href="events-eventmanager.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events.html" class="active">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html">Mentorship</a>
-            <a href="profile.html" class="navbar-profile">U</a>
+            <a href="events-eventmanager.html" class="active">Events</a>
+            <a href="job-list-eventmanager.html">Jobs</a>
+            <a href="dashboard-eventmanager.html">Dashboard</a>
+            <a href="notifications-eventmanager.html">Notifications</a>
+            <a href="profile.html" class="navbar-profile">E</a>
         </div>
     </nav>
 
     <main>
-        <h1 class="page-title">Upcoming Events</h1>
+        <h1 class="page-title">Event Management</h1>
 
-        <!-- NOTE: Students cannot request event creation -->
+        <!-- Event Manager Management Links -->
+        <div class="container">
+            <div class="flex-between">
+                <h2>Management Actions</h2>
+                <div>
+                    <a href="event-create-eventmanager.html" class="btn">Create Event</a>
+                    <a href="event-request-list-eventmanager.html" class="btn btn-secondary">View Requests</a>
+                </div>
+            </div>
+        </div>
 
         <!-- NOTE: Loop through events from database -->
         <section class="list-container" id="event-list">
@@ -31,22 +41,24 @@
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-1">ACES 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-eventmanager.html" class="card-link">View / Edit</a>
                 </div>
                 <p><strong>Date:</strong> <span id="event-date-1">January 25, 2026</span></p>
                 <p><strong>Location:</strong> <span id="event-loc-1">Grand Hall</span></p>
                 <p><strong>Description:</strong> A gathering of tech enthusiasts.</p>
+                <p><strong>Status:</strong> <span style="color: var(--accent);">Approved</span></p>
             </article>
 
             <!-- Placeholder Event 2 -->
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-2">Career Fair 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-eventmanager.html" class="card-link">View / Edit</a>
                 </div>
                 <p><strong>Date:</strong> February 10, 2026</p>
                 <p><strong>Location:</strong> University Courtyard</p>
                 <p><strong>Description:</strong> Connect with top employers.</p>
+                <p><strong>Status:</strong> <span style="color: var(--accent);">Approved</span></p>
             </article>
 
         </section>

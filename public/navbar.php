@@ -1,57 +1,76 @@
 <?php
+// Ensure session is started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$role = $_SESSION['role'] ?? '';
+$name = $_SESSION['name'] ?? 'User';
+$initial = strtoupper($name[0] ?? 'U');
+
+// Determine base URLs based on role
+$eventsPage = 'events.php';
+$jobsPage = 'job-list.php';
+$mentorshipPage = 'mentorship.php';
+
+if ($role === 'student') {
+    $eventsPage = 'events.php';
+    $mentorshipPage = 'mentorship.php';
+} elseif ($role === 'alumni') {
+    $eventsPage = 'events-alumni.php';
+    $jobsPage = 'job-list-alumni.php';
+    $mentorshipPage = 'mentorship.php'; // Alumni see their own + incoming requests
+} elseif ($role === 'admin') {
+    $eventsPage = 'events-admin.php';
+    $mentorshipPage = 'mentorship-admin.php'; // View-only
+} elseif ($role === 'event_manager') {
+    $eventsPage = 'events-admin.php';
+}
 ?>
-<div style="
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:10px 20px;
-    background:#f0f0f0;
-">
 
-    <a href="home.php" style="text-decoration:none; color:black; font-weight:bold;">
-        AES
-    </a>
+<nav class="navbar">
+    <a href="<?php echo $eventsPage; ?>" class="navbar-brand">AES</a>
+    <div class="navbar-links">
+        
+        <!-- Events - All roles -->
+        <a href="<?php echo $eventsPage; ?>">Events</a>
 
-    <a href="home.php" style="text-decoration:none; color:black; font-weight:bold;">
-        Events
-    </a>
+        <!-- Search/Messages - Student, Alumni, Admin (NOT Event Manager) -->
+        <?php if (in_array($role, ['student', 'alumni', 'admin'])): ?>
+            <a href="search.php">Search</a>
+        <?php endif; ?>
 
-    <a href="home.php" style="text-decoration:none; color:black; font-weight:bold;">
-        Mentorship
-    </a>
+        <!-- Mentorship - Student, Alumni, Admin -->
+        <?php if (in_array($role, ['student', 'alumni', 'admin'])): ?>
+            <a href="<?php echo $mentorshipPage; ?>">Mentorship</a>
+        <?php endif; ?>
 
-    <a href="home.php" style="text-decoration:none; color:black; font-weight:bold;">
-        Job
-    </a>
+        <!-- Jobs - Alumni (can post/apply), Admin (view), Event Manager (view) -->
+        <?php if ($role === 'alumni'): ?>
+            <a href="<?php echo $jobsPage; ?>">Jobs</a>
+        <?php elseif (in_array($role, ['admin', 'event_manager'])): ?>
+            <a href="job-list.php">Jobs</a>
+        <?php endif; ?>
 
+        <!-- Dashboard - Admin & Event Manager -->
+        <?php if (in_array($role, ['admin', 'event_manager'])): ?>
+            <a href="dashboard.php">Dashboard</a>
+        <?php endif; ?>
 
+        <!-- Notifications - Admin & Event Manager -->
+        <?php if ($role === 'admin'): ?>
+            <a href="notifications-admin.html">Notifications</a>
+        <?php elseif ($role === 'event_manager'): ?>
+            <a href="notifications-eventmanager.html">Notifications</a>
+        <?php endif; ?>
 
-    <a href="home.php" style="text-decoration:none; color:black; font-weight:bold;">
-        N
-    </a>
-    
+        <!-- Users - Admin only -->
+        <?php if ($role === 'admin'): ?>
+            <a href="user_check.php">Users</a>
+        <?php endif; ?>
 
-     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="user_check.php" style="text-decoration:none; color:black; font-weight:bold;">
-            Admin
-        </a>
-    <?php endif; ?>
-    
-    <a href="profile.php" style="
-        width:40px;
-        height:40px;
-        border-radius:50%;
-        background:#555;
-        color:white;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        text-decoration:none;
-        font-weight:bold;
-    ">
-        <?php echo strtoupper($_SESSION['name'][0] ?? 'U'); ?>
-    </a>
+        <!-- Profile -->
+        <a href="profile.php" class="navbar-profile"><?php echo $initial; ?></a>
 
-
-
-</div>
+    </div>
+</nav>

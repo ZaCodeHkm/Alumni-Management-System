@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Events - Student</title>
+    <title>View Events - Alumni</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Student Navbar: Events, Search, Mentorship, Profile (NO Jobs) -->
+    <!-- Alumni Navbar: Events, Search, Mentorship, Jobs, Profile -->
     <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
+        <a href="events-alumni.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events.html" class="active">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html">Mentorship</a>
+            <a href="events-alumni.html" class="active">Events</a>
+            <a href="search-alumni.html">Search</a>
+            <a href="mentorship-alumni.html">Mentorship</a>
+            <a href="job-list-alumni.html">Jobs</a>
             <a href="profile.html" class="navbar-profile">U</a>
         </div>
     </nav>
@@ -22,7 +23,13 @@
     <main>
         <h1 class="page-title">Upcoming Events</h1>
 
-        <!-- NOTE: Students cannot request event creation -->
+        <!-- Alumni can request event creation -->
+        <div class="container">
+            <div class="flex-between">
+                <p>Want to organize an event?</p>
+                <a href="event-request.html" class="btn">Request Event Creation</a>
+            </div>
+        </div>
 
         <!-- NOTE: Loop through events from database -->
         <section class="list-container" id="event-list">
@@ -31,7 +38,7 @@
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-1">ACES 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-alumni.html" class="card-link">View Details</a>
                 </div>
                 <p><strong>Date:</strong> <span id="event-date-1">January 25, 2026</span></p>
                 <p><strong>Location:</strong> <span id="event-loc-1">Grand Hall</span></p>
@@ -42,7 +49,7 @@
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-2">Career Fair 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-alumni.html" class="card-link">View Details</a>
                 </div>
                 <p><strong>Date:</strong> February 10, 2026</p>
                 <p><strong>Location:</strong> University Courtyard</p>

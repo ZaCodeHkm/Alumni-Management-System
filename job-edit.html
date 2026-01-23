@@ -3,37 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Editing</title>
-    <link rel="stylesheet" href="job-edit.css">
+    <title>Edit Job - Alumni</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="page_name">
-        <h1>Job Edit Form</h1>
-    </div>
 
-    <div class="job_form_container">
-        <form class="job_form">
-            <h2 style="display:inline">Job Details</h2>
-            <a href="job-list.html" class="job_list_link" style="display:inline; float:right;">View All Jobs</a>
-            <label>Job Title</label>
-                <input id="jobTitle" type="text" placeholder="Enter job title..." required>
+    <!-- Alumni Navbar (only Alumni who posted can edit) -->
+    <nav class="navbar">
+        <a href="events-alumni.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-alumni.html">Events</a>
+            <a href="search-alumni.html">Search</a>
+            <a href="mentorship-alumni.html">Mentorship</a>
+            <a href="job-list-alumni.html" class="active">Jobs</a>
+            <a href="profile.html" class="navbar-profile">U</a>
+        </div>
+    </nav>
 
-            <label>Company Name</label>
-                <input id="companyName" type="text" placeholder="Enter company name..." required>
+    <main>
+        <h1 class="page-title">Edit Job</h1>
 
-            <label>Description</label>
-                <input id="jobDesc" type="text" placeholder="Enter job description..." required>
-                
-            <div class="buttonContainer">
-                <a class="cancelButton" href="job-list.html"><b>Cancel</b></a>
-                <button class="submitButton" type="submit"><b>Submit</b></button>
-            </div>
-        </form>
-    </div>
+        <!-- Final version will populate form fields with current job data -->
+        <div class="container">
+            <form class="form">
+                <h2>Job Details</h2>
+
+                <label>Job Title</label>
+                <input type="text" name="job_title" placeholder="Enter job title..." required>
+
+                <label>Company Name</label>
+                <input type="text" name="company_name" placeholder="Enter company name..." required>
+
+                <label>Job Description</label>
+                <textarea name="job_description" placeholder="Describe the job role, requirements, and responsibilities..." required></textarea>
+
+                <label>Location</label>
+                <input type="text" name="location" placeholder="Enter job location..." required>
+
+                <label>Job Type</label>
+                <select name="job_type" required>
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Contract</option>
+                    <option>Internship</option>
+                </select>
+
+                <label>Application Deadline</label>
+                <input type="date" name="deadline" class="input-half" required>
+
+                <label>Contact Email</label>
+                <input type="email" name="contact_email" placeholder="Enter contact email..." required>
+
+                <label>Status</label>
+                <select name="status" required>
+                    <option>Available</option>
+                    <option>Filled</option>
+                    <option>Closed</option>
+                </select>
+
+                <div class="button-container">
+                    <a href="job-list-alumni.html" class="btn btn-secondary">Cancel</a>
+                    <button class="btn" type="submit">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
 
 </body>
-
-<footer>Alumni Engagement System</footer>
-
 </html>

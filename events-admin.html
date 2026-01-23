@@ -3,26 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Events - Student</title>
+    <title>Manage Events - Admin</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Student Navbar: Events, Search, Mentorship, Profile (NO Jobs) -->
+    <!-- Admin Navbar: Events, Search, Mentorship, Jobs, Dashboard, Users -->
     <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
+        <a href="events-admin.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events.html" class="active">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html">Mentorship</a>
-            <a href="profile.html" class="navbar-profile">U</a>
+            <a href="events-admin.html" class="active">Events</a>
+            <a href="search-admin.html">Search</a>
+            <a href="mentorship-admin.html">Mentorship</a>
+            <a href="job-list.html">Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="notifications-admin.html">Notifications</a>
+            <a href="user-check.html">Users</a>
+            <a href="profile.html" class="navbar-profile">A</a>
         </div>
     </nav>
 
     <main>
-        <h1 class="page-title">Upcoming Events</h1>
+        <h1 class="page-title">Event Management</h1>
 
-        <!-- NOTE: Students cannot request event creation -->
+        <!-- Admin Management Links -->
+        <div class="container">
+            <div class="flex-between">
+                <h2>Management Actions</h2>
+                <div>
+                    <a href="event-create.html" class="btn">Create Event</a>
+                    <a href="event-request-list.html" class="btn btn-secondary">View Requests</a>
+                </div>
+            </div>
+        </div>
 
         <!-- NOTE: Loop through events from database -->
         <section class="list-container" id="event-list">
@@ -31,22 +44,24 @@
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-1">ACES 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-admin.html" class="card-link">View / Edit</a>
                 </div>
                 <p><strong>Date:</strong> <span id="event-date-1">January 25, 2026</span></p>
                 <p><strong>Location:</strong> <span id="event-loc-1">Grand Hall</span></p>
                 <p><strong>Description:</strong> A gathering of tech enthusiasts.</p>
+                <p><strong>Status:</strong> <span style="color: var(--accent);">Approved</span></p>
             </article>
 
             <!-- Placeholder Event 2 -->
             <article class="list-item">
                 <div class="flex-between">
                     <h2 id="event-title-2">Career Fair 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
+                    <a href="event-details-admin.html" class="card-link">View / Edit</a>
                 </div>
                 <p><strong>Date:</strong> February 10, 2026</p>
                 <p><strong>Location:</strong> University Courtyard</p>
                 <p><strong>Description:</strong> Connect with top employers.</p>
+                <p><strong>Status:</strong> <span style="color: var(--accent);">Approved</span></p>
             </article>
 
         </section>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Overview - Admin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Admin Navbar -->
+    <nav class="navbar">
+        <a href="events-admin.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-admin.html">Events</a>
+            <a href="search-admin.html">Search</a>
+            <a href="mentorship-admin.html" class="active">Mentorship</a>
+            <a href="job-list.html">Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="notifications-admin.html">Notifications</a>
+            <a href="user-check.html">Users</a>
+            <a href="profile.html" class="navbar-profile">A</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1>Mentorship Overview</h1>
+            <p>View all mentorship requests in the system. Note: Only alumni mentors can approve or reject requests.</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="container">
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>15</h3>
+                    <p>Total Requests</p>
+                </div>
+                <div class="stat-card">
+                    <h3>8</h3>
+                    <p>Pending</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Approved</p>
+                </div>
+                <div class="stat-card">
+                    <h3>2</h3>
+                    <p>Rejected</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- View-only table (Admin cannot approve/reject) -->
+        <div class="container">
+            <h2>All Mentorship Requests</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Requester</th>
+                        <th>Type</th>
+                        <th>Mentor</th>
+                        <th>Area of Interest</th>
+                        <th>Communication</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Student</td>
+                        <td>Yosh</td>
+                        <td>Career Guidance</td>
+                        <td>Online Meeting</td>
+                        <td>Pending</td>
+                        <td>Jan 20, 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Alumni</td>
+                        <td>Dr. Lee</td>
+                        <td>Data Science</td>
+                        <td>Physical Meeting</td>
+                        <td style="color: var(--accent);">Approved</td>
+                        <td>Jan 18, 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Mike Johnson</td>
+                        <td>Student</td>
+                        <td>Prof. Chen</td>
+                        <td>Cybersecurity</td>
+                        <td>Online Meeting</td>
+                        <td>Pending</td>
+                        <td>Jan 15, 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Sarah Lee</td>
+                        <td>Student</td>
+                        <td>Sarah Wong</td>
+                        <td>Game Development</td>
+                        <td>Online Meeting</td>
+                        <td style="color: #c9302c;">Rejected</td>
+                        <td>Jan 10, 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
+
+</body>
+</html>
