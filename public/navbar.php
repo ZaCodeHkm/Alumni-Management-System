@@ -24,7 +24,8 @@ if ($role === 'student') {
     $eventsPage = 'events-admin.php';
     $mentorshipPage = 'mentorship-admin.php'; // View-only
 } elseif ($role === 'event_manager') {
-    $eventsPage = 'events-admin.php';
+    $eventsPage = 'events-eventmanager.html';
+    $jobsPage = 'job-list-eventmanager.html';
 }
 ?>
 
@@ -45,11 +46,13 @@ if ($role === 'student') {
             <a href="<?php echo $mentorshipPage; ?>">Mentorship</a>
         <?php endif; ?>
 
-        <!-- Jobs - Alumni (can post/apply), Admin (view) -->
+        <!-- Jobs - Alumni (can post/apply), Admin (view), Event Manager (manage) -->
         <?php if ($role === 'alumni'): ?>
             <a href="<?php echo $jobsPage; ?>">Jobs</a>
         <?php elseif ($role === 'admin'): ?>
             <a href="job-list.php">Jobs</a>
+        <?php elseif ($role === 'event_manager'): ?>
+            <a href="<?php echo $jobsPage; ?>">Jobs</a>
         <?php endif; ?>
 
         <!-- Dashboard - Admin & Event Manager -->

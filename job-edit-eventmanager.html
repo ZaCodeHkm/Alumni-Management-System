@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Job - Event Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Event Manager Navbar (manage job postings) -->
+    <nav class="navbar">
+        <a href="events-eventmanager.html" class="navbar-brand">AES</a>
+        <div class="navbar-links">
+            <a href="events-eventmanager.html">Events</a>
+            <a href="job-list-eventmanager.html" class="active">Jobs</a>
+            <a href="dashboard-eventmanager.html">Dashboard</a>
+            <a href="notifications-eventmanager.html">Notifications</a>
+            <a href="profile.html" class="navbar-profile">E</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1 class="page-title">Edit Job</h1>
+
+        <!-- Final version will populate form fields with current job data -->
+        <div class="container">
+            <form class="form">
+                <h2>Job Details</h2>
+
+                <label>Job Title</label>
+                <input type="text" name="job_title" placeholder="Enter job title..." required>
+
+                <label>Company Name</label>
+                <input type="text" name="company_name" placeholder="Enter company name..." required>
+
+                <label>Job Description</label>
+                <textarea name="job_description" placeholder="Describe the job role, requirements, and responsibilities..." required></textarea>
+
+                <label>Location</label>
+                <input type="text" name="location" placeholder="Enter job location..." required>
+
+                <label>Job Type</label>
+                <select name="job_type" required>
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Contract</option>
+                    <option>Internship</option>
+                </select>
+
+                <label>Application Deadline</label>
+                <input type="date" name="deadline" class="input-half" required>
+
+                <label>Contact Email</label>
+                <input type="email" name="contact_email" placeholder="Enter contact email..." required>
+
+                <label>Status</label>
+                <select name="status" required>
+                    <option>Available</option>
+                    <option>Filled</option>
+                    <option>Closed</option>
+                </select>
+
+                <div class="button-container">
+                    <a href="job-list-eventmanager.html" class="btn btn-secondary">Cancel</a>
+                    <button class="btn" type="submit">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
+
+</body>
+</html>

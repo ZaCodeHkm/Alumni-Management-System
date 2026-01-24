@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Postings - Alumni</title>
+    <title>Job Postings - Event Manager</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Alumni Navbar (Alumni can apply for jobs) -->
+    <!-- Event Manager Navbar (manage job postings) -->
     <nav class="navbar">
-        <a href="events-alumni.html" class="navbar-brand">AES</a>
+        <a href="events-eventmanager.html" class="navbar-brand">AES</a>
         <div class="navbar-links">
-            <a href="events-alumni.html">Events</a>
-            <a href="search-alumni.html">Search</a>
-            <a href="mentorship-alumni.html">Mentorship</a>
-            <a href="job-list-alumni.html" class="active">Jobs</a>
-            <a href="profile.html" class="navbar-profile">U</a>
+            <a href="events-eventmanager.html">Events</a>
+            <a href="job-list-eventmanager.html" class="active">Jobs</a>
+            <a href="dashboard-eventmanager.html">Dashboard</a>
+            <a href="notifications-eventmanager.html">Notifications</a>
+            <a href="profile.html" class="navbar-profile">E</a>
         </div>
     </nav>
 
@@ -24,33 +24,40 @@
         <h1 class="page-title">Job Postings</h1>
 
         <div class="container">
-            <p>Browse job postings and apply for positions.</p>
+            <div class="flex-between">
+                <p>Manage job postings in the system.</p>
+                <a href="job-create-eventmanager.html" class="btn">Post a Job</a>
+            </div>
         </div>
 
-        <!-- Job List Container -->
+        <!-- Job List Container (edit/delete) -->
         <section class="list-container">
 
             <article class="list-item">
                 <div class="flex-between">
                     <h2 class="jobName">Junior Engineer</h2>
-                    <a href="job-details-alumni.html" class="card-link">View Job Details</a>
+                    <a href="job-details-eventmanager.html" class="card-link">View Job Details</a>
                 </div>
                 <p><strong>Company:</strong> <span class="companyName">SE Malaysia</span></p>
                 <p><strong>Description:</strong> <span class="jobDescription">Web app development using well-known frameworks</span></p>
+                <p><strong>Posted by:</strong> Alumni User</p>
                 <div class="button-container">
-                    <button class="btn">Apply for Job</button>
+                    <a href="job-edit-eventmanager.html" class="btn">Edit Listing</a>
+                    <button class="btn btn-danger">Delete Listing</button>
                 </div>
             </article>
 
             <article class="list-item">
                 <div class="flex-between">
                     <h2 class="jobName">CEO</h2>
-                    <a href="job-details-alumni.html" class="card-link">View Job Details</a>
+                    <a href="job-details-eventmanager.html" class="card-link">View Job Details</a>
                 </div>
                 <p><strong>Company:</strong> <span class="companyName">ScapeGoat Ltd.</span></p>
                 <p><strong>Description:</strong> <span class="jobDescription">Executive expert at falling.</span></p>
+                <p><strong>Posted by:</strong> Alumni User</p>
                 <div class="button-container">
-                    <button class="btn">Apply for Job</button>
+                    <a href="job-edit-eventmanager.html" class="btn">Edit Listing</a>
+                    <button class="btn btn-danger">Delete Listing</button>
                 </div>
             </article>
 
