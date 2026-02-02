@@ -12,6 +12,32 @@
         <?php include 'navbar.php'; ?>
     </nav>
 
+    <?php
+        $host = "localhost";
+        $db = "sofeng";
+        $user = "root";
+        $pass = "";
+        
+    try {
+        $pdo = new PDO(
+            "mysql:host=$host;dbname=$db;charset=utf8mb4",
+            $user,
+            $pass,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+    } catch (PDOException $e) {
+        die("Database connection failed");
+    }
+
+    $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time
+            FROM event
+            ORDER BY event_date ASC";
+
+    $stmt = $pdo->query(query: $sql);
+
+    $events = $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
+    ?>
+
     <main>
         <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'eventmanager')): ?>
             <h1 class="page-title">Event Management</h1> <!--admins and event managers only-->
@@ -38,30 +64,31 @@
                 </div>
             </div>
         <?php endif; ?>
-
-        <section class="list-container" id="event-list">
             
             <!-- Placeholder Event 1 -->
-            <article class="list-item">
-                <div class="flex-between">
-                    <h2 id="event-title-1">ACES 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
-                </div>
-                <p><strong>Date:</strong> <span id="event-date-1">January 25, 2026</span></p>
-                <p><strong>Location:</strong> <span id="event-loc-1">Grand Hall</span></p>
-                <p><strong>Description:</strong> A gathering of tech enthusiasts.</p>
-            </article>
+        <section class="list-container" id="event-list">
 
-            <!-- Placeholder Event 2 -->
-            <article class="list-item">
-                <div class="flex-between">
-                    <h2 id="event-title-2">Career Fair 2026</h2>
-                    <a href="event-details.html" class="card-link">View Details</a>
-                </div>
-                <p><strong>Date:</strong> February 10, 2026</p>
-                <p><strong>Location:</strong> University Courtyard</p>
-                <p><strong>Description:</strong> Connect with top employers.</p>
-            </article>
+            <?php if (count($events) === 0): ?>
+                <p>No events available.</p>
+            <?php endif; ?>
+
+            <?php foreach ($events as $event): ?>
+                <article class="list-item">
+                    <div class="flex-between">
+                        <h2><?= htmlspecialchars($event['title']) ?></h2>
+                        <a href="event-details.php?id=<?= $event['event_id'] ?>" class="card-link">
+                            View Details
+                        </a>
+                    </div>
+
+                    <p><strong>Date:</strong> <?= htmlspecialchars($event['event_date']) ?></p>
+                    <p><strong>Time:</strong> <?= htmlspecialchars($event['start_time']) ?> to <?= htmlspecialchars($event['end_time']) ?></p>
+                    <p><strong>Location:</strong> <?= htmlspecialchars($event['location']) ?></p>
+                    <p><strong>Description:</strong> <?= htmlspecialchars($event['description']) ?></p>
+                </article>
+            <?php endforeach; ?>
+
+</section>
 
         </section>
     </main>
