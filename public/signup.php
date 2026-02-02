@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
 <head>
     <title>Sign Up</title>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 

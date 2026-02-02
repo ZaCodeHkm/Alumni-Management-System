@@ -48,6 +48,7 @@ $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 <head>
     <title>My Profile</title>
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
