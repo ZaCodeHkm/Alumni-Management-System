@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../database/db.php';
 require_once 'admin_c.php';
 
 /* Fetch all users */
