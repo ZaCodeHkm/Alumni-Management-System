@@ -103,3 +103,20 @@ CREATE TABLE career_history (
         REFERENCES user(user_id)
         ON DELETE CASCADE
 );
+
+
+DROP TABLE IF EXISTS JobPosting;
+
+CREATE TABLE JobPosting (
+    job_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    company_name VARCHAR(255) NOT NULL,
+    posted_by INT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    availability ENUM('available', 'filled', 'closed') DEFAULT 'available',
+    approved_by INT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (posted_by) REFERENCES User(user_id),
+    FOREIGN KEY (approved_by) REFERENCES User(user_id)
+);
