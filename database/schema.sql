@@ -103,3 +103,5 @@ CREATE TABLE career_history (
         REFERENCES user(user_id)
         ON DELETE CASCADE
 );
+
+CREATE TABLE 
