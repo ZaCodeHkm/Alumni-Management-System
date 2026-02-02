@@ -1,12 +1,9 @@
 <?php
 session_start();
+require_once 'auth.php';
 
-
-// Block access if not logged in
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+// Require any logged-in user
+require_login();
 ?>
 
 <?php include 'navbar.php'; ?>
@@ -15,14 +12,17 @@ if (!isset($_SESSION['user_id'])) {
 <html>
 <head>
     <title>Home</title>
-    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?>!</h2>
 
 <p>This is the homepage.</p>
-
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <a href="user_check.php" style="text-decoration:none; color:black; font-weight:bold;">
+            Admin
+        </a>
+    <?php endif; ?>
 
 <a href="logout.php">Logout</a>
 

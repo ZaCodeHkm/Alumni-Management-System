@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];
+        $_SESSION['email'] = $user['email'];
         $_SESSION['role'] = $user['role'];
 
         $pdo->prepare(
@@ -28,16 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $error = "Invalid email or password";
     }
-    
-    $_SESSION['user_id'] = $user['user_id'];
-    $_SESSION['name'] = $user['name'];
-    $_SESSION['role'] = $user['role'];
-
-    echo '<pre>';
-    var_dump($_SESSION);
-    echo '</pre>';
-    exit;
-
 }
 ?>
 
@@ -45,13 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
 <head>
   <title>Login</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <h2>Login</h2>
 
-<?php if ($error): ?><p style="color:red;"><?php echo $error; ?></p><?php endif; ?>
+<?php if ($error): ?>
+    <p style="color:red;"><?php echo $error; ?></p>
+<?php endif; ?>
 
 <form method="post">
   <input type="email" name="email" placeholder="Email" required><br><br>

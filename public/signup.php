@@ -16,9 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($password !== $confirmPassword) {
         $error = "Passwords do not match.";
     } else {
-      // pasword hasher
+        // password hasher
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        //database query
+        
+        // database query
         try {
             $stmt = $pdo->prepare(
                 "INSERT INTO user (email, password_hash, name, role)
@@ -38,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
 <head>
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 

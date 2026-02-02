@@ -1,15 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
+require_once 'auth.php';
 require_once __DIR__ . '/../database/db.php';
+
+// Require login
+require_login();
 
 $userId = $_SESSION['user_id'];
 
@@ -48,7 +43,6 @@ $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
 <head>
     <title>My Profile</title>
-    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 
