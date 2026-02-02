@@ -38,6 +38,8 @@ $pending_users = [
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles.css">
+
     <title>Admin – User Management</title>
 </head>
 <body>
