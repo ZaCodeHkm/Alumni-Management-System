@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../database/db.php';
 $userId = $_SESSION['user_id'];
 $error = '';
 $success = '';
