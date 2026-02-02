@@ -104,6 +104,38 @@ CREATE TABLE career_history (
         ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS event (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    event_date DATE NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    capacity INT NOT NULL,
+    created_by INT NOT NULL,
+    status ENUM('pending','approved','rejected') DEFAULT 'pending',
+    approved_by INT NULL,
+    approved_at TIMESTAMP NULL,
+    is_alumni_exclusive BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    FOREIGN KEY (created_by) REFERENCES user(user_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (approved_by) REFERENCES user(user_id)
+        ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS event_attendance (
+    attendance_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id INT NOT NULL,
+    user_id INT NOT NULL,
+    status ENUM('registered','cancelled') DEFAULT 'registered',
+    registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(event_id, user_id),
+    FOREIGN KEY (event_id) REFERENCES event(event_id)
+        ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+        ON DELETE CASCADE
 
 DROP TABLE IF EXISTS JobPosting;
 

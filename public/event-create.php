@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <?php include 'navbar.php'; ?>
+
+    <main>
+        <h1 class="page-title">Create Event</h1>
+
+        <div class="container">
+            <form class="form">
+                <div class="flex-between mb-20">
+                    <h2>Event Details</h2>
+                    <a href="event-request-list.php" class="card-link">View Event Requests</a>
+                </div>
+
+                <label>Event Title</label>
+                <input id="eventTitle" type="text" placeholder="Enter event title..." required>
+
+                <label>Description</label>
+                <textarea id="eventDesc" placeholder="Enter event description..." required></textarea>
+
+                <label>Date</label>
+                <input id="eventDate" type="date" class="input-half" required>
+
+                <label>Start Time</label>
+                <input id="eventStartTime" type="time" class="input-half" required>
+
+                <label>End Time</label>
+                <input id="eventEndTime" type="time" class="input-half" required>
+
+                <label>Venue</label>
+                <input id="eventLocation" type="text" placeholder="Enter location details..." required>
+
+                <label>Type</label>
+                <select required>
+                    <option>Physical</option>
+                    <option>Online</option>
+                </select>
+
+                <label>Visibility</label>
+                <select required>
+                    <option>All</option>
+                    <option>Alumni</option>
+                    <option>Students</option>
+                </select>
+
+                <label>Capacity</label>
+                <input id="eventCapacity" type="number" placeholder="Enter event max capacity..." required>
+
+                <div class="button-container">
+                    <a href="events-admin.html" class="btn btn-secondary">Cancel</a>
+                    <button class="btn" type="submit">Create Event</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Alumni Engagement System</p>
+    </footer>
+
+</body>
+</html>
