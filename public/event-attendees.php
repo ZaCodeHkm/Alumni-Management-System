@@ -3,25 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Attendees - Admin</title>
+    <title>Event Attendees</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Admin Navbar -->
-    <nav class="navbar">
-        <a href="events-admin.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events-admin.html" class="active">Events</a>
-            <a href="search-admin.html">Search</a>
-            <a href="mentorship-admin.html">Mentorship</a>
-            <a href="job-list.html">Jobs</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="notifications-admin.html">Notifications</a>
-            <a href="user-check.html">Users</a>
-            <a href="profile.html" class="navbar-profile">A</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <h1 class="page-title">Event Attendees</h1>

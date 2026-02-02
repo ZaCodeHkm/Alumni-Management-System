@@ -3,22 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request Event - Alumni</title>
+    <title>Request Event</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Alumni Navbar (only Alumni can request events) -->
-    <nav class="navbar">
-        <a href="events-alumni.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events-alumni.html" class="active">Events</a>
-            <a href="search-alumni.html">Search</a>
-            <a href="mentorship-alumni.html">Mentorship</a>
-            <a href="job-list-alumni.html">Jobs</a>
-            <a href="profile.html" class="navbar-profile">U</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <h1 class="page-title">Request a New Event</h1>

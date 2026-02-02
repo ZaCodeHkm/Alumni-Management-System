@@ -8,33 +8,13 @@
 </head>
 <body>
 
-    <!-- Admin & Event Manager have access to Dashboard -->
-    <!-- This navbar shows Admin view; Event Manager navbar would differ slightly -->
-    <nav class="navbar">
-        <a href="events-admin.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events-admin.html">Events</a>
-            <a href="search-admin.html">Search</a>
-            <a href="mentorship-admin.html">Mentorship</a>
-            <a href="job-list.html">Jobs</a>
-            <a href="dashboard.html" class="active">Dashboard</a>
-            <a href="notifications-admin.html">Notifications</a>
-            <a href="user-check.html">Users</a>
-            <a href="profile.html" class="navbar-profile">A</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <div class="container">
-            <h1>Admin Dashboard</h1>
-            <p class="text-center">System Overview Metrics</p>
+            <h1>Dashboard</h1>
         </div>
 
-        <!-- 
-            NOTE:
-            This section contains the key numbers for the administrator.
-            Use the IDs to inject data from your database.
-        -->
         <div class="container">
             <section class="dashboard-stats">
                 <div class="stat-card">
@@ -62,7 +42,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Alumni Engagement System - Admin Panel</p>
+        <p>&copy; 2026 Alumni Engagement System</p>
     </footer>
 
 </body>
