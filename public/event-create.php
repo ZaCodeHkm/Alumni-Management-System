@@ -3,35 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Event - Admin</title>
+    <title>Create Event</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Admin Navbar -->
-    <nav class="navbar">
-        <a href="events-admin.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events-admin.html" class="active">Events</a>
-            <a href="search-admin.html">Search</a>
-            <a href="mentorship-admin.html">Mentorship</a>
-            <a href="job-list.html">Jobs</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="notifications-admin.html">Notifications</a>
-            <a href="user-check.html">Users</a>
-            <a href="profile.html" class="navbar-profile">A</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
-        <h1 class="page-title">Edit Event</h1>
+        <h1 class="page-title">Create Event</h1>
 
-        <!-- Final version will populate form fields with current event data -->
         <div class="container">
             <form class="form">
                 <div class="flex-between mb-20">
                     <h2>Event Details</h2>
-                    <a href="event-request-list.html" class="card-link">View Event Requests</a>
+                    <a href="event-request-list.php" class="card-link">View Event Requests</a>
                 </div>
 
                 <label>Event Title</label>
@@ -70,7 +56,7 @@
 
                 <div class="button-container">
                     <a href="events-admin.html" class="btn btn-secondary">Cancel</a>
-                    <button class="btn" type="submit">Save Changes</button>
+                    <button class="btn" type="submit">Create Event</button>
                 </div>
             </form>
         </div>

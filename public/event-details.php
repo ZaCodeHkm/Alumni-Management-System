@@ -8,17 +8,7 @@
 </head>
 <body>
 
-    <!-- Note: Include appropriate navbar based on user role -->
-    <!-- Student navbar shown here -->
-    <nav class="navbar">
-        <a href="events.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events.html" class="active">Events</a>
-            <a href="search.html">Search</a>
-            <a href="mentorship.html">Mentorship</a>
-            <a href="profile.html" class="navbar-profile">U</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <div class="container">
@@ -26,6 +16,18 @@
 
             <section class="details-section">
                 <h3>Event Information</h3>
+
+                <!-- Admin/ Event Manager Action Buttons -->
+                <div class="button-container mb-20">
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager')): ?>
+                        <a href="event-edit.php" class="btn">Edit Event</a>
+                        <button class="btn btn-danger" type="submit">Delete Event</button>
+                    <?php endif; ?>
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
+                        <a href="event-attendees.php" class="btn btn-secondary">View Attendees</a> 
+                    <?php endif; ?>
+                </div>
+
                 <p><strong>Date:</strong> <span id="detail-date">January 25, 2026</span></p>
                 <p><strong>Time:</strong> <span id="detail-time">9:00 AM to 6:00 PM</span></p>
                 <p><strong>Location:</strong> <span id="detail-location">Grand Hall</span></p>
@@ -33,11 +35,13 @@
                 <p><strong>About:</strong> This symposium is about Coding and Programming.</p>
                 <p><strong>Visibility:</strong> Alumni</p>
 
-                <!-- Join Form -->
-                <form action="#" method="POST" class="mt-20">
-                    <input type="hidden" name="event_id" value="1">
-                    <button type="submit" class="btn">Join This Event</button>
-                </form>
+                <!-- Join Form (alumni/ students only) -->
+                 <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'student')): ?>
+                    <form action="#" method="POST" class="mt-20">
+                        <input type="hidden" name="event_id" value="1">
+                        <button type="submit" class="btn">Join This Event</button>
+                    </form>
+                <?php endif; ?>
             </section>
 
             <section class="details-section">

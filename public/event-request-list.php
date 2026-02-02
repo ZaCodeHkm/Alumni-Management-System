@@ -3,25 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Requests - Admin</title>
+    <title>Event Requests</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Admin Navbar -->
-    <nav class="navbar">
-        <a href="events-admin.html" class="navbar-brand">AES</a>
-        <div class="navbar-links">
-            <a href="events-admin.html" class="active">Events</a>
-            <a href="search-admin.html">Search</a>
-            <a href="mentorship-admin.html">Mentorship</a>
-            <a href="job-list.html">Jobs</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="notifications-admin.html">Notifications</a>
-            <a href="user-check.html">Users</a>
-            <a href="profile.html" class="navbar-profile">A</a>
-        </div>
-    </nav>
+    <?php include 'navbar.php'; ?>
 
     <main>
         <h1 class="page-title">Event Requests</h1>
@@ -35,7 +22,7 @@
                     <a href="event-details-admin.html" class="card-link">View Event Details</a>
                 </div>
                 
-                <p><strong>Title:</strong> <span class="eventName">MMU Alumni Guest Talk</span></p>
+                <p><strong>Title:</strong> <span class="eventName">MMU Alumni Guest Talk</span></p> <!-- alumni exclusivity based on 'is_alumni_exclusive' value in DB -->
                 <p><strong>Date:</strong> <span class="eventDate">26th January 2026</span></p>
                 <p><strong>Time:</strong> <span class="eventTime">09:30 AM</span></p>
                 <p><strong>Location:</strong> <span class="eventLocation">Physical @ DTC</span></p>
@@ -50,7 +37,7 @@
             <article class="list-item">
                 <div class="flex-between">
                     <h2>Event Request</h2>
-                    <a href="event-details-admin.html" class="card-link">View Event Details</a>
+                    <a href="event-details.php" class="card-link">View Event Details</a>
                 </div>
                 
                 <p><strong>Title:</strong> <span class="eventName">CES 2026</span></p>
