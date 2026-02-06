@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +14,7 @@
         <?php include 'navbar.php'; ?>
     </nav>
 
+    <!--sql query-->
     <?php
         $host = "localhost";
         $db = "sofeng";
@@ -39,33 +42,33 @@
     ?>
 
     <main>
-        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'eventmanager')): ?>
-            <h1 class="page-title">Event Management</h1> <!--admins and event managers only-->
-            <!-- Event Management -->
+        <?php echo "!FOR TESTING! User role: " . htmlspecialchars($_SESSION['role']); ?>
+        <h1 class="page-title">Upcoming Events</h1>
+
+        <!-- Event Management -->
+        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'event_manager')): ?>  <!--admins and event managers only-->
             <div class="container">
                 <div class="flex-between">
                     <h2>Management Actions</h2>
                     <div>
-                        <a href="event-create.html" class="btn">Create Event</a>
-                        <a href="event-request-list.html" class="btn btn-secondary">View Requests</a>
+                        <a href="event-create.php" class="btn">Create Event</a>
+                        <a href="event-request-list.php" class="btn btn-secondary">View Requests</a>
                     </div>
                 </div>
             </div>
         <?php endif; ?>
 
-        <h1 class="page-title">Upcoming Events</h1>
-
-        <!-- Alumni can request event creation -->
+        <!-- Alumni event creation request -->
         <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'alumni')): ?>
             <div class="container">
                 <div class="flex-between">
                     <p>Want to organize an event?</p>
-                    <a href="event-request.html" class="btn">Request Event Creation</a>
+                    <a href="event-request.php" class="btn">Request Event Creation</a>
                 </div>
             </div>
         <?php endif; ?>
-            
-            <!-- Placeholder Event 1 -->
+
+        <!-- Event Template -->
         <section class="list-container" id="event-list">
 
             <?php if (count($events) === 0): ?>
@@ -87,8 +90,7 @@
                     <p><strong>Description:</strong> <?= htmlspecialchars($event['description']) ?></p>
                 </article>
             <?php endforeach; ?>
-
-</section>
+        </section>
 
         </section>
     </main>

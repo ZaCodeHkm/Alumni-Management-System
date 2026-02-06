@@ -25,6 +25,8 @@ $stmt->execute([$event_id, $user_id]);
     <h1>Event Registration Successful</h1>
     Event ID is: <?= htmlspecialchars($event_id); ?>
     User ID is: <?= htmlspecialchars($user_id); ?>
+
+    <a href="events.php">Return to Events Page</a>
 </body>
 
 </html>

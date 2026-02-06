@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +34,13 @@ session_start();
         die("Database connection failed");
     }
 
-    $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, capacity, created_by, approved_by, approved_at, created_at, is_alumni_exclusive 
+    $sql = "SELECT event_id, title, description, event_date, location, type, start_time, end_time, capacity, created_by, approved_by, approved_at, created_at, is_alumni_exclusive 
             FROM event WHERE event_id = ?";
-
-    $isAlumniExclusive = (bool)$events['is_alumni_exclusive'];
 
     $stmt = $pdo->prepare(query: $sql);
     $stmt->execute(params: [$event_id]);
     $events = $stmt->fetch(mode: PDO::FETCH_ASSOC);
+    $isAlumniExclusive = (bool)$events['is_alumni_exclusive'];
     ?>
 
     <main>
@@ -57,11 +54,11 @@ session_start();
 
                 <!-- Admin/ Event Manager Action Buttons -->
                 <div class="button-container mb-20">
-                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager')): ?>
-                        <a href="event-edit.php" class="btn">Edit Event</a>
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager')): ?>
+                        <a href="event-edit.php?id=<?= $events['event_id'] ?>" class="btn">Edit Event</a>
                         <button class="btn btn-danger" type="submit">Delete Event</button>
                     <?php endif; ?>
-                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
                         <a href="event-attendees.php" class="btn btn-secondary">View Attendees</a> 
                     <?php endif; ?>
                 </div>
@@ -69,12 +66,13 @@ session_start();
                 <p><strong>Date:</strong> <span id="detail-date"><?= htmlspecialchars($events['event_date']) ?></span></p>
                 <p><strong>Time:</strong> <span id="detail-time"><?= htmlspecialchars($events['start_time']) ?> to <?= htmlspecialchars($events['end_time']) ?></span></p>
                 <p><strong>Location:</strong> <span id="detail-location"><?= htmlspecialchars($events['location']) ?></span></p>
+                <p><strong>Type:</strong> <span id="detail-type"><?= htmlspecialchars($events['type']) ?></span></p>
                 <p><strong>Capacity:</strong> <span id="detail-capacity"><?= htmlspecialchars($events['capacity']) ?> pax</span></p>
                 <p><strong>About:</strong> <?= htmlspecialchars($events['description']) ?></p><br>
 
                 <!-- Join Form (alumni exclusive or not based on event) -->
                 <?php if (($_SESSION['role'] === 'alumni') || !$isAlumniExclusive): ?>
-                    <form action="eventreg.php" method="POST">
+                    <form action="event-regist.php" method="POST">
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
                         <button type="submit" class="btn">Join This Event</button>
                     </form>
