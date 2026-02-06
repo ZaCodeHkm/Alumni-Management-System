@@ -32,15 +32,17 @@
         die("Database connection failed");
     }
 
-    $sql = "SELECT 
-                user.name,
-                user.user_id,
-                user.email,
-                user.role
-            FROM user
-            JOIN event_attendance ON user.user_id = event_attendance.user_id
-            WHERE event_attendance.event_id = ?
-            ORDER BY user.name ASC";
+    // $sql = "SELECT 
+    //             user.name,
+    //             user.user_id,
+    //             user.email,
+    //             user.role
+    //         FROM event_attendance
+    //         INNER JOIN user ON event_attendance.user_id = user.user_id
+    //         WHERE event_id = ?
+    //         ORDER BY user.name ASC";
+
+    $sql = "SELECT event_attendance.user_id, user.name, user.email, user.role FROM event_attendance INNER JOIN user ON event_attendance.user_id = user.user_id WHERE event_id = ?";
 
     $stmt = $pdo->prepare(query: $sql);
     $stmt->execute(params: [$event_id]);
@@ -68,7 +70,7 @@
                     <p><strong>ID:</strong> <span class="attendeeID"><?= htmlspecialchars($attendee['user_id']) ?></span></p>
                     <p><strong>Email:</strong> <span><?= htmlspecialchars($attendee['email']) ?></span></p>
                 </article>
-            <php endforeach; ?>
+            <?php endforeach; ?>
         </section>
     </main>
 

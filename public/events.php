@@ -35,15 +35,17 @@
     if ($_SESSION['role'] === 'student') {
         $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
                 FROM event
+                WHERE status = 'approved' AND
                 WHERE is_alumni_exclusive = 0 OR is_alumni_exclusive IS NULL
                 ORDER BY created_at DESC";}
-    elseif ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'event_manager') {
+    elseif ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'event_manager' || $_SESSION['role'] === 'admin') {
         $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
             FROM event
+            WHERE status = 'approved'
             ORDER BY created_at DESC";}
 
     $stmt = $pdo->query(query: $sql);
-    
+
     $events = $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
     ?>
 

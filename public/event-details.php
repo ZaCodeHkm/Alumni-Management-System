@@ -74,12 +74,14 @@
                 <p><strong>Capacity:</strong> <span id="detail-capacity"><?= htmlspecialchars($events['capacity']) ?> pax</span></p>
                 <p><strong>About:</strong> <?= htmlspecialchars($events['description']) ?></p><br>
 
-                <!-- Join Form (alumni exclusive or not based on event) -->
-                <?php if (($_SESSION['role'] === 'alumni') || !$isAlumniExclusive): ?>
+                <!-- Join Form (disappears for eventmng and admin. alumni exclusive or not based on event) -->
+                <?php if (!($_SESSION['role'] === 'admin') && !($_SESSION['role'] === 'event_manager')): ?>
+                    <?php if (($_SESSION['role'] === 'alumni') || !$isAlumniExclusive): ?>
                     <form action="event-regist.php" method="POST">
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
                         <button type="submit" class="btn">Join This Event</button>
                     </form>
+                    <?php endif; ?>
                 <?php endif; ?>
             </section>
 
