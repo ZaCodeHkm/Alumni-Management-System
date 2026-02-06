@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php session_start(); 
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +23,6 @@
         $event_id = $_GET['id'];
         $role = $_SESSION['role'];
 
-
         $canJoin = $role === 'alumni'|| ($role === 'student' && !$isAlumniExclusive);
 
     try {
@@ -41,6 +43,13 @@
     $stmt->execute(params: [$event_id]);
     $events = $stmt->fetch(mode: PDO::FETCH_ASSOC);
     $isAlumniExclusive = (bool)$events['is_alumni_exclusive'];
+
+    $commentSql = " SELECT c.content, c.created_at, u.name FROM comments c JOIN user u ON c.user_id = u.user_id WHERE c.event_id = ?
+                    ORDER BY c.created_at DESC";
+
+    $commentStmt = $pdo->prepare($commentSql);
+    $commentStmt->execute([$event_id]);
+    $comments = $commentStmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <main>
@@ -95,19 +104,33 @@
             <section class="comments-section">
                 <h3>Comments</h3>
                 <div id="comments-list">
-                    <!-- Backend loops comments here -->
-                    <div class="comment">
-                        <strong>John:</strong> The event is boring.
-                    </div>
+                    <?php if (empty($comments)): ?>
+                        <p>No comments yet.</p>
+                    <?php else: ?>
+                        <?php foreach ($comments as $comment): ?>
+                            <div class="comment">
+                                <strong><?= htmlspecialchars($comment['name']) ?>:</strong>
+                                <?= htmlspecialchars($comment['content']) ?>
+                                <div class="comment-date">
+                                    <?= htmlspecialchars($comment['created_at']) ?>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
 
-                <!-- Add Comment Form -->
-                <form action="#" method="POST" class="comment-form">
-                    <textarea name="comment_text" placeholder="Write a comment..." required></textarea>
-                    <div class="button-container">
-                        <button type="submit" class="btn">Post Comment</button>
-                    </div>
-                </form>
+                    <!-- Add Comment Form -->
+                    <?php if ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'student'): ?>
+                        <form action="comment-submit.php?id=<?= $event_id ?>" method="POST" class="comment-form">
+                            <textarea name="content" placeholder="Write a comment..." required></textarea>
+                            <div class="button-container">
+                                <button type="submit" class="btn">Post Comment</button>
+                            </div>
+                        </form>
+                    <?php else: ?>
+                        <p>Only Alumni and Students can post comments.</p>
+                    <?php endif; ?>
+                </div>
             </section>
         </div>
     </main>
