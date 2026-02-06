@@ -1,75 +1,4 @@
 /* =====================================================
-<<<<<<< Updated upstream
-   1️⃣ MULTI-ROLE THEME VARIABLES
-   ===================================================== */
-
-/* DEFAULT / STUDENT THEME (Teal/Gold) */
-:root,
-body.theme-student {
-    --bg-body: #0d2d35;
-    --bg-container: #09232A;
-    --bg-input: #143138;
-    --bg-hover: #1a3a41;
-    --accent: #C8A92A;
-    --accent-hover: #b09425;
-    --border: #2e444a;
-    --text-primary: #ffffff;
-    --text-secondary: #8a9ea2;
-    --shadow-rgb: 200, 169, 42;
-}
-
-/* ALUMNI THEME (Deep Green/Emerald) */
-body.theme-alumni {
-    --bg-body: #0a1f1a;
-    --bg-container: #071713;
-    --bg-input: #122b24;
-    --bg-hover: #19382e;
-    --accent: #5da387;
-    --accent-hover: #7dbfa5;
-    --border: #1e362d;
-    --shadow-rgb: 93, 163, 135;
-}
-
-/* EVENT MANAGER THEME (Warm Brown/Orange) */
-body.theme-manager {
-    --bg-body: #251a14;
-    --bg-container: #1c140f;
-    --bg-input: #33241c;
-    --bg-hover: #3d2c22;
-    --accent: #d48c5d;
-    --accent-hover: #e0a57e;
-    --border: #422f24;
-    --shadow-rgb: 212, 140, 93;
-}
-
-/* ADMIN THEME (Deep Gray/Red) */
-body.theme-admin {
-    --bg-body: #121212;
-    --bg-container: #1a1a1a;
-    --bg-input: #262626;
-    --bg-hover: #333333;
-    --accent: #b34d4d;
-    --accent-hover: #cf6666;
-    --border: #333333;
-    --shadow-rgb: 179, 77, 77;
-}
-
-/* Global Shared Utilities */
-:root {
-    --danger: #c9302c;
-    --danger-hover: #ac2925;
-    --success: #1e7d59;
-    --success-bg: #144d36;
-    --shadow: rgba(0, 0, 0, 0.3);
-    --shadow-hover: rgba(var(--shadow-rgb), 0.2);
-}
-
-/* =====================================================
-   2️⃣ CORE RESET & BASE
-   ===================================================== */
-
-* {
-=======
    ALUMNI MANAGEMENT SYSTEM - ADOBE PROFESSIONAL THEME
    Refactored for Performance, Maintainability & Aesthetic
    ===================================================== */
@@ -109,27 +38,18 @@ body.theme-admin {
 
 /* 2. BASE RESET */
 *, *::before, *::after {
->>>>>>> Stashed changes
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-<<<<<<< Updated upstream
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-=======
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
->>>>>>> Stashed changes
     background-color: var(--bg-body);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
-<<<<<<< Updated upstream
-    transition: background-color 0.3s ease;
-=======
     -webkit-font-smoothing: antialiased;
->>>>>>> Stashed changes
 }
 
 a {
@@ -149,12 +69,6 @@ h1, h2, h3 {
     letter-spacing: -0.02em;
 }
 
-<<<<<<< Updated upstream
-/* =====================================================
-   3️⃣ NAVBAR
-   ===================================================== */
-
-=======
 h1 { font-size: 2rem; }
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
@@ -303,7 +217,6 @@ td {
 tr:hover { background: rgba(255, 255, 255, 0.02); }
 
 /* Navbar */
->>>>>>> Stashed changes
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -328,381 +241,6 @@ tr:hover { background: rgba(255, 255, 255, 0.02); }
     padding: 0.5rem 1rem;
     border-radius: var(--radius);
     font-weight: 500;
-<<<<<<< Updated upstream
-}
-
-.navbar-links a:hover,
-.navbar-links a.active {
-    background: var(--bg-hover);
-    color: var(--accent);
-}
-
-/* =====================================================
-   4️⃣ LAYOUT CONTAINERS
-   ===================================================== */
-
-main {
-    min-height: calc(100vh - 200px);
-    padding: 20px;
-}
-
-.container {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px var(--shadow);
-    padding: 30px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-
-.card {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.page-title {
-    text-align: left;
-    margin: 0 auto 30px;
-    padding: 0 5%;
-    max-width: 1200px;
-}
-
-/* =====================================================
-   5️⃣ TYPOGRAPHY
-   ===================================================== */
-
-h1 {
-    color: var(--accent);
-    margin-bottom: 15px;
-    font-size: 2.5em;
-    font-weight: 700;
-}
-
-h2 {
-    color: var(--accent);
-    margin-bottom: 15px;
-    font-size: 1.75em;
-    font-weight: 600;
-}
-
-h3 {
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-size: 1.25em;
-    font-weight: 600;
-}
-
-p {
-    margin-bottom: 12px;
-    color: var(--text-primary);
-}
-
-/* =====================================================
-   6️⃣ FORMS
-   ===================================================== */
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-label {
-    font-weight: 600;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background-color: var(--bg-input);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-size: 15px;
-    outline: none;
-    transition: all 0.25s;
-    font-family: inherit;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--accent);
-    background-color: var(--bg-hover);
-    box-shadow: 0 0 0 3px rgba(var(--shadow-rgb), 0.1);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-/* =====================================================
-   7️⃣ BUTTONS
-   ===================================================== */
-
-.btn,
-button[type="submit"] {
-    width: 100%;
-    padding: 14px 24px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-    text-align: center;
-    background-color: var(--accent);
-    color: var(--bg-container);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn:hover,
-button[type="submit"]:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(var(--shadow-rgb), 0.4);
-}
-
-.btn:active,
-button[type="submit"]:active {
-    transform: translateY(0);
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-}
-
-.btn-secondary:hover {
-    background-color: var(--bg-input);
-    color: var(--text-primary);
-    border-color: var(--text-secondary);
-}
-
-/* =====================================================
-   8️⃣ TABLES
-   ===================================================== */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: var(--bg-container);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-thead {
-    background-color: var(--bg-body);
-}
-
-th {
-    padding: 14px 12px;
-    text-align: left;
-    color: var(--accent);
-    font-weight: 600;
-    border-bottom: 2px solid var(--border);
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
-}
-
-tr:last-child td {
-    border-bottom: none;
-}
-
-tr:hover {
-    background-color: var(--bg-input);
-}
-
-td a {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-td a:hover {
-    color: var(--accent-hover);
-}
-
-/* =====================================================
-   9️⃣ ALERTS & STATUS
-   ===================================================== */
-
-.alert {
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.alert-success {
-    background-color: var(--success-bg);
-    color: #a7f3d0;
-    border: 1px solid var(--success);
-}
-
-.alert-error {
-    background-color: #4d1f1f;
-    color: #fca5a5;
-    border: 1px solid var(--danger);
-}
-
-.request-status {
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    border: 1px solid var(--border);
-}
-
-.request-status strong {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.request-status p {
-    margin-bottom: 0;
-}
-
-.status-pending {
-    background: #4d3b10;
-    border-color: var(--accent);
-    color: #fef3c7;
-}
-
-.status-approved {
-    background: var(--success-bg);
-    border-color: var(--success);
-    color: #a7f3d0;
-}
-
-.status-rejected {
-    background: #4d1f1f;
-    border-color: var(--danger);
-    color: #fca5a5;
-}
-
-/* =====================================================
-   🔟 DASHBOARD STATS
-   ===================================================== */
-
-.dashboard-stats {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.stat-card {
-    flex: 1;
-    min-width: 200px;
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.stat-card h3 {
-    font-size: 2.5em;
-    color: var(--accent);
-    margin-bottom: 8px;
-}
-
-.stat-card p {
-    color: var(--text-secondary);
-    font-size: 14px;
-}
-
-/* =====================================================
-   1️⃣1️⃣ MENTORSHIP SEARCH & GRID
-   ===================================================== */
-
-.search-section {
-    background: var(--bg-container);
-    padding: 24px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.search-section h2 {
-    margin-bottom: 20px;
-}
-
-.search-bar {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.search-bar input {
-    flex: 1;
-    min-width: 250px;
-}
-
-.alumni-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 24px;
-}
-
-.alumni-card {
-    background: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.alumni-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow-hover);
-    border-color: var(--accent);
-}
-
-.alumni-avatar {
-    width: 90px;
-    height: 90px;
-=======
     font-size: 0.875rem;
     color: var(--text-secondary);
 }
@@ -717,17 +255,11 @@ td a:hover {
     height: 32px;
     background: var(--accent);
     color: var(--bg-body) !important;
->>>>>>> Stashed changes
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-<<<<<<< Updated upstream
-    color: var(--bg-container);
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
-=======
     font-size: 0.75rem;
     margin-left: 1rem;
 }
@@ -1301,7 +833,6 @@ article:hover, .list-item:hover { background: var(--bg-elevated); }
 
 .alumni-info {
     margin-bottom: 1.5rem;
->>>>>>> Stashed changes
 }
 
 .alumni-name {
@@ -1317,181 +848,16 @@ article:hover, .list-item:hover { background: var(--bg-elevated); }
     margin: 0;
 }
 
-<<<<<<< Updated upstream
-.view-profile-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 16px;
-    background: var(--accent);
-    color: var(--bg-container);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.2s;
-}
-
-.view-profile-btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
-}
-
-.no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-secondary);
-}
-
-.no-results p {
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-
-/* =====================================================
-   1️⃣2️⃣ PROFILE PAGE
-   ===================================================== */
-
-.profile-header {
-    background: var(--bg-container);
-    padding: 50px 0;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
-    
-}
-
-.profile-content {
-=======
 /* Mentorship Requests List - Card Layout */
 .mentorship-requests-list {
->>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
-<<<<<<< Updated upstream
-.profile-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    color: var(--bg-container);
-    font-size: 48px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(var(--shadow-rgb), 0.4);
-    flex-shrink: 0;
-}
-
-.profile-info h1 {
-    display: flex; 
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.profile-info p {
-    color: var(--text-secondary);
-    font-size: 16px;
-}
-
-.profile-details {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.profile-details h2 {
-    margin-bottom: 20px;
-}
-
-.detail-row {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.detail-row:last-child {
-    border-bottom: none;
-}
-
-.detail-label {
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 600;
-    min-width: 120px;
-}
-
-.detail-value {
-    font-size: 14px;
-    color: var(--text-primary);
-    text-align: right;
-    flex: 1;
-}
-
-.detail-value a {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.request-section {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.request-section h2 {
-    margin-bottom: 20px;
-}
-
-/* =====================================================
-   1️⃣3️⃣ JOB POSTINGS & LIST ITEMS
-   ===================================================== */
-
-section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto 30px;
-}
-
-.list-container {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 30px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
-    box-shadow: 0 4px 10px var(--shadow);
-}
-
-.list-container h3 {
-    color: var(--accent);
-    font-size: 1.5em;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border);
-}
-
-article,
-.list-item {
-    background-color: var(--bg-input);
-=======
 .request-card {
     background: var(--bg-surface);
->>>>>>> Stashed changes
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent);
     border-radius: var(--radius);
@@ -1520,76 +886,6 @@ article,
     color: var(--text-primary);
 }
 
-<<<<<<< Updated upstream
-.card-link:hover {
-    background-color: var(--accent);
-    color: var(--bg-container);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
-}
-
-/* =====================================================
-   1️⃣4️⃣ SIGN-UP / AUTH FORMS
-   ===================================================== */
-
-.sign-up,
-.Sign-up,
-.auth-container {
-    max-width: 420px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.sign-up h1,
-.sign-up h2,
-.Sign-up h1,
-.Sign-up h2,
-.auth-container h1,
-.auth-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: var(--accent);
-    width: 100%;
-}
-
-.sign-up .form,
-.Sign-up .form,
-.auth-container .form {
-    max-width: 100%;
-    gap: 18px;
-}
-
-/* Optional helper text below forms */
-.auth-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: var(--text-secondary);
-    font-size: 14px;
-}
-
-.auth-footer a {
-    color: var(--accent);
-    font-weight: 600;
-}
-
-.auth-footer a:hover {
-    color: var(--accent-hover);
-}
-
-/* =====================================================
-   1️⃣5️⃣ FOOTER
-   ===================================================== */
-
-footer {
-    background-color: var(--bg-container);
-    border-top: 1px solid var(--border);
-    padding: 20px;
-    text-align: center;
-=======
 .request-mentor-name a {
     color: var(--accent);
     text-decoration: none;
@@ -1602,7 +898,6 @@ footer {
 
 .request-date {
     font-size: 0.875rem;
->>>>>>> Stashed changes
     color: var(--text-secondary);
     margin: 0;
 }
@@ -1702,11 +997,7 @@ footer {
 }
 
 /* =====================================================
-<<<<<<< Updated upstream
-   1️⃣6️⃣ RESPONSIVE DESIGN
-=======
    10. RESPONSIVE DESIGN
->>>>>>> Stashed changes
    ===================================================== */
 
 @media (max-width: 768px) {
@@ -1775,82 +1066,4 @@ footer {
         width: 100%;
         justify-content: center;
     }
-<<<<<<< Updated upstream
-
-    .flex-between {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .flex-between > div {
-        width: 100%;
-    }
-
-    article,
-    .list-item {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    th,
-    td {
-        padding: 10px 8px;
-    }
-
-    .sign-up,
-    .Sign-up,
-    .auth-container {
-        max-width: 95%;
-        margin: 20px auto;
-        padding: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-header {
-        padding: 30px 0;
-    }
-
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        font-size: 40px;
-    }
-
-    h1 {
-        font-size: 1.75em;
-    }
-
-    .alumni-avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
-    }
-
-    .sign-up,
-    .Sign-up,
-    .auth-container {
-        max-width: 100%;
-        margin: 15px auto;
-        padding: 20px;
-    }
-
-    .sign-up .form,
-    .Sign-up .form,
-    .auth-container .form {
-        gap: 15px;
-    }
-=======
->>>>>>> Stashed changes
 }

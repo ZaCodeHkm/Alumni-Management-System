@@ -48,54 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <p class="auth-tagline">Connect with professionals, mentors, and peers in your network</p>
         </div>
 
-<<<<<<< Updated upstream
-<div class="Sign-up">
-    <h2>Sign Up</h2>
-
-    <?php if ($error): ?>
-        <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
-    <?php endif; ?>
-
-    <?php if ($success): ?>
-        <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
-    <?php endif; ?>
-
-    <form method="post" class="form">
-
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" required>
-        </div>
-
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" required>
-        </div>
-
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" required>
-        </div>
-
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input type="password" name="confirm_password" required>
-        </div>
-
-        <div class="form-group">
-            <label>Role</label>
-            <select name="role" required>
-                <option value="student">Student</option>
-                <option value="alumni">Alumni</option>
-            </select>
-        </div>
-
-        <button type="submit">Sign Up</button>
-    </form>
-
-    <p>Already have an account? <a href="login.php">Login</a></p>
-</div>
-=======
         <!-- Right Side: Form -->
         <div class="auth-form-section">
             <div class="auth-card">
@@ -144,7 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <button type="submit" class="btn">Create Account</button>
                 </form>
->>>>>>> Stashed changes
 
                 <div class="auth-footer">
                     <p>Already have an account? <a href="login.php">Sign in</a></p>

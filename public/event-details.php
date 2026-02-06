@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
 <?php session_start(); 
 ?>
 
-=======
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +12,6 @@
 <body>
 
     <?php include 'navbar.php'; ?>
-<<<<<<< Updated upstream
     <!--sql query to fetch event details-->
     <?php
         $host = "localhost";
@@ -57,17 +53,10 @@
     <main>
         <div class="container">
             <h1 id="detail-title"><?= htmlspecialchars($events['title']) ?></h1>
-=======
-
-    <main>
-        <div class="container">
-            <h1 id="detail-title">CES 2026</h1>
->>>>>>> Stashed changes
 
             <section class="details-section">
                 <h3>Event Information</h3>
 
-<<<<<<< Updated upstream
                 <!-- Event Manager Action Buttons -->
                 <div class="button-container mb-20">
                     <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager')): ?>
@@ -117,53 +106,19 @@
                         <button type="submit" class="btn">Join This Event</button>
                     </form>
                     <?php endif; ?>
-=======
-                <!-- Admin/ Event Manager Action Buttons -->
-                <div class="button-container mb-20">
-                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager')): ?>
-                        <a href="event-edit.php" class="btn">Edit Event</a>
-                        <button class="btn btn-danger" type="submit">Delete Event</button>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'eventmanager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
-                        <a href="event-attendees.php" class="btn btn-secondary">View Attendees</a> 
-                    <?php endif; ?>
-                </div>
-
-                <p><strong>Date:</strong> <span id="detail-date">January 25, 2026</span></p>
-                <p><strong>Time:</strong> <span id="detail-time">9:00 AM to 6:00 PM</span></p>
-                <p><strong>Location:</strong> <span id="detail-location">Grand Hall</span></p>
-                <p><strong>Capacity:</strong> <span id="detail-capacity">100 pax</span></p>
-                <p><strong>About:</strong> This symposium is about Coding and Programming.</p>
-                <p><strong>Visibility:</strong> Alumni</p>
-
-                <!-- Join Form (alumni/ students only) -->
-                 <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'student')): ?>
-                    <form action="#" method="POST" class="mt-20">
-                        <input type="hidden" name="event_id" value="1">
-                        <button type="submit" class="btn">Join This Event</button>
-                    </form>
->>>>>>> Stashed changes
                 <?php endif; ?>
             </section>
 
             <section class="details-section">
-<<<<<<< Updated upstream
                 <p class="creation-details">Created by: <?= htmlspecialchars($events['created_by']) ?></p>
                 <p class="creation-details">Created at: <?= htmlspecialchars($events['created_at']) ?></p>
                 <p class="approval-details">Approved by: <?= htmlspecialchars($events['approved_by']) ?></p>
                 <p class="approval-details">Approved at: <?= htmlspecialchars($events['approved_at']) ?></p>
-=======
-                <p class="creation-details">Created by: Event Manager</p>
-                <p class="creation-details">Created at: February 20, 2025</p>
-                <p class="approval-details">Approved by: Event Manager</p>
-                <p class="approval-details">Approved at: March 27, 2025</p>
->>>>>>> Stashed changes
             </section>
 
             <section class="comments-section">
                 <h3>Comments</h3>
                 <div id="comments-list">
-<<<<<<< Updated upstream
                     <?php if (empty($comments)): ?>
                         <p>No comments yet.</p>
                     <?php else: ?>
@@ -191,21 +146,6 @@
                         <p>Only Alumni and Students can post comments.</p>
                     <?php endif; ?>
                 </div>
-=======
-                    <!-- Backend loops comments here -->
-                    <div class="comment">
-                        <strong>John:</strong> The event is boring.
-                    </div>
-                </div>
-
-                <!-- Add Comment Form -->
-                <form action="#" method="POST" class="comment-form">
-                    <textarea name="comment_text" placeholder="Write a comment..." required></textarea>
-                    <div class="button-container">
-                        <button type="submit" class="btn">Post Comment</button>
-                    </div>
-                </form>
->>>>>>> Stashed changes
             </section>
         </div>
     </main>

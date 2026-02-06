@@ -10,41 +10,64 @@ $userRole = $_SESSION['role'];
 
 // Determine what jobs to show based on role
 if ($userRole === 'admin') {
-    // Admin sees all approved jobs
     $stmt = $pdo->query("
-        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name
-        FROM JobPosting j
-        LEFT JOIN User u ON j.posted_by = u.user_id
-        LEFT JOIN User a ON j.approved_by = a.user_id
+        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name,
+               COUNT(DISTINCT ja.application_id) as application_count
+        FROM jobposting j
+        LEFT JOIN user u ON j.posted_by = u.user_id
+        LEFT JOIN user a ON j.approved_by = a.user_id
+        LEFT JOIN job_application ja ON j.job_id = ja.job_id
         WHERE j.status = 'approved'
+        GROUP BY j.job_id
         ORDER BY j.created_at DESC
     ");
+    $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } elseif ($userRole === 'event_manager') {
-    // Event Manager sees all jobs (including pending for approval)
     $stmt = $pdo->query("
-        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name
-        FROM JobPosting j
-        LEFT JOIN User u ON j.posted_by = u.user_id
-        LEFT JOIN User a ON j.approved_by = a.user_id
+        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name,
+               COUNT(DISTINCT ja.application_id) as application_count
+        FROM jobposting j
+        LEFT JOIN user u ON j.posted_by = u.user_id
+        LEFT JOIN user a ON j.approved_by = a.user_id
+        LEFT JOIN job_application ja ON j.job_id = ja.job_id
+        GROUP BY j.job_id
         ORDER BY j.status ASC, j.created_at DESC
     ");
+    $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } elseif ($userRole === 'alumni') {
-    // Alumni sees only approved jobs
-    $stmt = $pdo->query("
-        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name
-        FROM JobPosting j
-        LEFT JOIN User u ON j.posted_by = u.user_id
-        LEFT JOIN User a ON j.approved_by = a.user_id
-        WHERE j.status = 'approved'
+    $stmt = $pdo->prepare("
+        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name,
+               COUNT(DISTINCT ja.application_id) as application_count,
+               EXISTS(SELECT 1 FROM job_application WHERE job_id = j.job_id AND user_id = ?) as has_applied
+        FROM jobposting j
+        LEFT JOIN user u ON j.posted_by = u.user_id
+        LEFT JOIN user a ON j.approved_by = a.user_id
+        LEFT JOIN job_application ja ON j.job_id = ja.job_id
+        WHERE j.status = 'approved' OR j.posted_by = ?
+        GROUP BY j.job_id
         ORDER BY j.created_at DESC
     ");
+    $stmt->execute([$userId, $userId]);
+    $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} elseif ($userRole === 'student') {
+    $stmt = $pdo->prepare("
+        SELECT j.*, u.name as posted_by_name, a.name as approved_by_name,
+               COUNT(DISTINCT ja.application_id) as application_count,
+               EXISTS(SELECT 1 FROM job_application WHERE job_id = j.job_id AND user_id = ?) as has_applied
+        FROM jobposting j
+        LEFT JOIN user u ON j.posted_by = u.user_id
+        LEFT JOIN user a ON j.approved_by = a.user_id
+        LEFT JOIN job_application ja ON j.job_id = ja.job_id
+        WHERE j.status = 'approved'
+        GROUP BY j.job_id
+        ORDER BY j.created_at DESC
+    ");
+    $stmt->execute([$userId]);
+    $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    // Students don't have access to jobs
     header("Location: home.php");
     exit;
 }
-
-$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php include 'navbar.php'; ?>
@@ -52,8 +75,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Postings</title>
@@ -114,12 +136,27 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($approvedJobs as $job): ?>
                 <article class="list-item">
                     <div class="flex-between">
-                        <h2><?= htmlspecialchars($job['title']) ?></h2>
+                        <h2>
+                            <?= htmlspecialchars($job['title']) ?>
+                            <?php if (isset($job['has_applied']) && $job['has_applied']): ?>
+                                <span style="background: #d4edda; color: #155724; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; margin-left: 10px;">✓ Applied</span>
+                            <?php endif; ?>
+                            <?php if (($userRole === 'event_manager' || ($userRole === 'alumni' && $job['posted_by'] == $userId)) && $job['application_count'] > 0): ?>
+                                <span style="background: #cce5ff; color: #004085; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; margin-left: 10px;">
+                                    <?= $job['application_count'] ?> applicant<?= $job['application_count'] != 1 ? 's' : '' ?>
+                                </span>
+                            <?php endif; ?>
+                        </h2>
                         <a href="job_details.php?id=<?= $job['job_id'] ?>" class="card-link">View Details</a>
                     </div>
                     <p><strong>Company:</strong> <?= htmlspecialchars($job['company_name']) ?></p>
                     <p><strong>Description:</strong> <?= htmlspecialchars(substr($job['description'], 0, 150)) ?>...</p>
-                    <p><strong>Availability:</strong> <span style="color: var(--accent);"><?= ucfirst($job['availability']) ?></span></p>
+                    <p>
+                        <strong>Availability:</strong> 
+                        <span style="color: <?= $job['availability'] === 'available' ? 'var(--accent)' : '#888' ?>;">
+                            <?= $job['availability'] === 'available' ? '📢 Open' : '✕ Filled' ?>
+                        </span>
+                    </p>
                 </article>
                 <?php endforeach; ?>
             <?php endif; ?>

@@ -2,9 +2,6 @@
 require_once __DIR__ . '/../database/db.php';
 session_start();
 
-// Check if user is already logged in and has a role
-$current_role = isset($_SESSION['role']) ? $_SESSION['role'] : 'student';
-
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

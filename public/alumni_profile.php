@@ -298,12 +298,7 @@ include 'navbar.php';
             </form>
         </div>
 
-        <!-- Chat Button -->
-        <div class="message-container">
-            <button id="chatBtn" class="chat-circle-btn" style="bottom: 30px; right: 30px;">
-                <span class="material-symbols-outlined">chat</span>
-            </button>
-        </div>
+       
 
         <!-- Chat Layout (initially hidden) -->
         <div class="main-chat-layout" id="mainLayout" style="display: none;">
@@ -348,22 +343,6 @@ include 'navbar.php';
             </div>
         </div>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </main>
 
