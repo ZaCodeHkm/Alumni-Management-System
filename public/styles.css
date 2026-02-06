@@ -1,987 +1,1069 @@
 /* =====================================================
-   1️⃣ MULTI-ROLE THEME VARIABLES
+   ALUMNI MANAGEMENT SYSTEM - ADOBE PROFESSIONAL THEME
+   Refactored for Performance, Maintainability & Aesthetic
    ===================================================== */
 
-/* DEFAULT / STUDENT THEME (Teal/Gold) */
-:root,
-body.theme-student {
-    --bg-body: #0d2d35;
-    --bg-container: #09232A;
-    --bg-input: #143138;
-    --bg-hover: #1a3a41;
-    --accent: #C8A92A;
-    --accent-hover: #b09425;
-    --border: #2e444a;
-    --text-primary: #ffffff;
-    --text-secondary: #8a9ea2;
-    --shadow-rgb: 200, 169, 42;
-}
-
-/* ALUMNI THEME (Deep Green/Emerald) */
-body.theme-alumni {
-    --bg-body: #0a1f1a;
-    --bg-container: #071713;
-    --bg-input: #122b24;
-    --bg-hover: #19382e;
-    --accent: #5da387;
-    --accent-hover: #7dbfa5;
-    --border: #1e362d;
-    --shadow-rgb: 93, 163, 135;
-}
-
-/* EVENT MANAGER THEME (Warm Brown/Orange) */
-body.theme-manager {
-    --bg-body: #251a14;
-    --bg-container: #1c140f;
-    --bg-input: #33241c;
-    --bg-hover: #3d2c22;
-    --accent: #d48c5d;
-    --accent-hover: #e0a57e;
-    --border: #422f24;
-    --shadow-rgb: 212, 140, 93;
-}
-
-/* ADMIN THEME (Deep Gray/Red) */
-body.theme-admin {
-    --bg-body: #121212;
-    --bg-container: #1a1a1a;
-    --bg-input: #262626;
-    --bg-hover: #333333;
-    --accent: #b34d4d;
-    --accent-hover: #cf6666;
-    --border: #333333;
-    --shadow-rgb: 179, 77, 77;
-}
-
-/* Global Shared Utilities */
+/* 1. DESIGN TOKENS (Adobe-Inspired Palette) */
 :root {
-    --danger: #c9302c;
-    --danger-hover: #ac2925;
-    --success: #1e7d59;
-    --success-bg: #144d36;
-    --shadow: rgba(0, 0, 0, 0.3);
-    --shadow-hover: rgba(var(--shadow-rgb), 0.2);
+    /* Colors - Sophisticated Deep Slate & Refined Gold */
+    --bg-body: #1e1e1e;          /* Adobe Deep Charcoal */
+    --bg-surface: #252525;       /* Adobe Surface */
+    --bg-elevated: #2d2d2d;      /* Adobe Elevated */
+    --bg-hover: #3a3a3a;
+    
+    --bg-container: #252525;     /* Same as --bg-surface */
+    --bg-input: #2d2d2d; 
+
+    --accent: #d4af37;           /* Metallic Gold */
+    --accent-hover: #f1c40f;     /* Bright Gold */
+    --accent-soft: rgba(212, 175, 55, 0.15);
+    
+    --border: #3e3e3e;           /* Subtle Borders */
+    --text-primary: #e1e1e1;     /* Soft White */
+    --text-secondary: #a0a0a0;   /* Muted Gray */
+    
+    --danger: #e74c3c;
+    --danger-hover: #c0392b;
+    --success: #27ae60;
+    --success-bg: rgba(39, 174, 96, 0.1);
+    --warning: #f39c12;
+    --warning-bg: rgba(243, 156, 18, 0.1);
+
+    /* Spacing & Sizing */
+    --space-base: 1rem;
+    --radius: 4px;               /* Adobe uses sharper, cleaner corners */
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =====================================================
-   2️⃣ CORE RESET & BASE
-   ===================================================== */
-
-* {
+/* 2. BASE RESET */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-body);
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
-    transition: background-color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
     color: var(--accent);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: var(--transition);
 }
 
-a:hover {
-    color: var(--accent-hover);
+a:hover { color: var(--accent-hover); }
+
+/* 3. TYPOGRAPHY */
+h1, h2, h3 {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
-/* =====================================================
-   3️⃣ NAVBAR
-   ===================================================== */
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
 
+p { margin-bottom: 1rem; color: var(--text-secondary); }
+
+/* 4. LAYOUT & CONTAINERS */
+main {
+    min-height: calc(100vh - 160px);
+    padding: 3rem 1.5rem;
+}
+
+.container, .list-container, section {
+    max-width: 1000px;
+    margin: 0 auto 2.5rem;
+    padding: 2.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.page-title {
+    max-width: 1000px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
+}
+
+/* 5. COMPONENTS */
+
+/* Cards */
+.card, .stat-card, .search-section, .profile-details, .request-section, .auth-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+/* Buttons - Adobe Style */
+.btn, button[type="submit"], .view-profile-btn, .card-link, .btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    border-radius: 20px; /* Rounded pill style for modern Adobe feel */
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--bg-body);
+}
+
+.btn:hover, button[type="submit"]:hover, .view-profile-btn:hover, .card-link:hover, .btn-back:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-soft);
+}
+
+.btn-secondary, .btn-clear, .btn-back {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover, .btn-clear:hover, .btn-back:hover {
+    background: var(--bg-hover);
+    border-color: var(--text-secondary);
+}
+
+.btn-danger {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: var(--danger-hover);
+    border-color: var(--danger-hover);
+}
+
+/* Forms */
+.form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9375rem;
+    transition: var(--transition);
+    outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+    background: var(--bg-hover);
+}
+
+.button-container { display: flex; gap: 1rem; margin-top: 1rem; }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background: var(--bg-surface);
+}
+
+th {
+    background: var(--bg-elevated);
+    padding: 1rem;
+    text-align: left;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem;
+}
+
+tr:hover { background: rgba(255, 255, 255, 0.02); }
+
+/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color: var(--bg-container);
+    padding: 0.75rem 2rem;
+    background: var(--bg-surface);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.navbar-links {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.navbar-links a {
-    padding: 8px 16px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    font-weight: 500;
-}
-
-.navbar-links a:hover,
-.navbar-links a.active {
-    background: var(--bg-hover);
-    color: var(--accent);
-}
-
-/* =====================================================
-   4️⃣ LAYOUT CONTAINERS
-   ===================================================== */
-
-main {
-    min-height: calc(100vh - 200px);
-    padding: 20px;
-}
-
-.container {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px var(--shadow);
-    padding: 30px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
-}
-
-.card {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.page-title {
-    text-align: left;
-    margin: 0 auto 30px;
-    padding: 0 5%;
-    max-width: 1200px;
-}
-
-/* =====================================================
-   5️⃣ TYPOGRAPHY
-   ===================================================== */
-
-h1 {
-    color: var(--accent);
-    margin-bottom: 15px;
-    font-size: 2.5em;
-    font-weight: 700;
-}
-
-h2 {
-    color: var(--accent);
-    margin-bottom: 15px;
-    font-size: 1.75em;
-    font-weight: 600;
-}
-
-h3 {
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-size: 1.25em;
-    font-weight: 600;
-}
-
-p {
-    margin-bottom: 12px;
-    color: var(--text-primary);
-}
-
-/* =====================================================
-   6️⃣ FORMS
-   ===================================================== */
-
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-label {
-    font-weight: 600;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background-color: var(--bg-input);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-size: 15px;
-    outline: none;
-    transition: all 0.25s;
-    font-family: inherit;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    border-color: var(--accent);
-    background-color: var(--bg-hover);
-    box-shadow: 0 0 0 3px rgba(var(--shadow-rgb), 0.1);
-}
-
-textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.button-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-/* =====================================================
-   7️⃣ BUTTONS
-   ===================================================== */
-
-.btn,
-button[type="submit"] {
-    width: 100%;
-    padding: 14px 24px;
-    border-radius: 8px;
-    border: none;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-    text-align: center;
-    background-color: var(--accent);
-    color: var(--bg-container);
-    text-transform: uppercase;
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--accent) !important;
     letter-spacing: 1px;
 }
 
-.btn:hover,
-button[type="submit"]:hover {
-    background-color: var(--accent-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(var(--shadow-rgb), 0.4);
-}
-
-.btn:active,
-button[type="submit"]:active {
-    transform: translateY(0);
-}
-
-.btn-secondary {
-    background-color: transparent;
+.navbar-links { display: flex; gap: 0.5rem; align-items: center; }
+.navbar-links a {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    border: 1px solid var(--border);
 }
 
-.btn-secondary:hover {
-    background-color: var(--bg-input);
-    color: var(--text-primary);
-    border-color: var(--text-secondary);
-}
-
-/* =====================================================
-   8️⃣ TABLES
-   ===================================================== */
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: var(--bg-container);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-thead {
-    background-color: var(--bg-body);
-}
-
-th {
-    padding: 14px 12px;
-    text-align: left;
-    color: var(--accent);
-    font-weight: 600;
-    border-bottom: 2px solid var(--border);
-}
-
-td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
+.navbar-links a:hover, .navbar-links a.active {
+    background: var(--bg-hover);
     color: var(--text-primary);
 }
 
-tr:last-child td {
-    border-bottom: none;
-}
-
-tr:hover {
-    background-color: var(--bg-input);
-}
-
-td a {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-td a:hover {
-    color: var(--accent-hover);
-}
-
-/* =====================================================
-   9️⃣ ALERTS & STATUS
-   ===================================================== */
-
-.alert {
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.alert-success {
-    background-color: var(--success-bg);
-    color: #a7f3d0;
-    border: 1px solid var(--success);
-}
-
-.alert-error {
-    background-color: #4d1f1f;
-    color: #fca5a5;
-    border: 1px solid var(--danger);
-}
-
-.request-status {
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin-bottom: 24px;
-    border: 1px solid var(--border);
-}
-
-.request-status strong {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.request-status p {
-    margin-bottom: 0;
-}
-
-.status-pending {
-    background: #4d3b10;
-    border-color: var(--accent);
-    color: #fef3c7;
-}
-
-.status-approved {
-    background: var(--success-bg);
-    border-color: var(--success);
-    color: #a7f3d0;
-}
-
-.status-rejected {
-    background: #4d1f1f;
-    border-color: var(--danger);
-    color: #fca5a5;
-}
-
-/* =====================================================
-   🔟 DASHBOARD STATS
-   ===================================================== */
-
-.dashboard-stats {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.stat-card {
-    flex: 1;
-    min-width: 200px;
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    text-align: center;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.stat-card h3 {
-    font-size: 2.5em;
-    color: var(--accent);
-    margin-bottom: 8px;
-}
-
-.stat-card p {
-    color: var(--text-secondary);
-    font-size: 14px;
-}
-
-/* =====================================================
-   1️⃣1️⃣ MENTORSHIP SEARCH & GRID
-   ===================================================== */
-
-.search-section {
-    background: var(--bg-container);
-    padding: 24px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.search-section h2 {
-    margin-bottom: 20px;
-}
-
-.search-bar {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.search-bar input {
-    flex: 1;
-    min-width: 250px;
-}
-
-.alumni-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    margin-top: 24px;
-}
-
-.alumni-card {
-    background: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.alumni-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow-hover);
-    border-color: var(--accent);
-}
-
-.alumni-avatar {
-    width: 90px;
-    height: 90px;
+.navbar-profile {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: var(--bg-body) !important;
     border-radius: 50%;
-    margin: 0 auto 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
     font-weight: 700;
-    color: var(--bg-container);
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
+    font-size: 0.75rem;
+    margin-left: 1rem;
+}
+
+/* Alerts & Status */
+.alert, .request-status {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.alert-success, .status-approved { 
+    background: var(--success-bg); 
+    color: var(--success); 
+    border-color: var(--success); 
+}
+
+.alert-error, .status-rejected { 
+    background: rgba(231, 76, 60, 0.15); 
+    color: var(--danger); 
+    border-color: var(--danger); 
+}
+
+.status-pending { 
+    background: var(--warning-bg); 
+    color: var(--warning); 
+    border-color: var(--warning); 
+}
+
+/* 6. SPECIFIC GRIDS & LISTS */
+.dashboard-stats, .alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.alumni-card { text-align: center; cursor: pointer; }
+.alumni-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+
+.alumni-avatar, .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated);
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.profile-avatar { width: 120px; height: 120px; font-size: 3rem; }
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.detail-row:last-child { border-bottom: none; }
+.detail-label { color: var(--text-secondary); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; }
+.detail-value { color: var(--text-primary); font-size: 0.9375rem; }
+
+/* List Items (Jobs/Articles) */
+article, .list-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius);
+    transition: var(--transition);
+}
+
+article:hover, .list-item:hover { background: var(--bg-elevated); }
+
+/* =====================================================
+   7. AUTH PAGES (Login & Signup) - Adobe Split Layout
+   ===================================================== */
+
+/* Auth Container - Full screen split layout like Adobe */
+.auth-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50-50 */
+}
+
+/* Left Side - Branding/Hero Section */
+.auth-branding {
+    background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-body) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative accent line on branding side */
+.auth-branding::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent), var(--accent-hover));
+}
+
+.auth-logo {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.auth-tagline {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+/* Right Side - Form Section */
+.auth-form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: var(--bg-body);
+}
+
+.auth-card {
+    max-width: 420px;
+    width: 100%;
+    padding: 0; /* Remove padding since we're not using the card border anymore */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.auth-header { 
+    text-align: left; 
+    margin-bottom: 2.5rem; 
+}
+
+.auth-header h1 { 
+    margin-bottom: 0.5rem; 
+    color: var(--text-primary);
+    font-size: 2rem;
+}
+
+.auth-header p { 
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.875rem;
+}
+
+/* Responsive - Stack on mobile */
+@media (max-width: 968px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .auth-branding {
+        padding: 3rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .auth-logo {
+        font-size: 2rem;
+    }
+    
+    .auth-tagline {
+        font-size: 1rem;
+    }
+    
+    .auth-form-section {
+        padding: 3rem 1.5rem;
+    }
+}
+
+/* =====================================================
+   8. ADMIN DASHBOARD - ADOBE THEME
+   ===================================================== */
+
+.admin-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* Success/Error Messages for Admin Actions */
+.message {
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.message.success {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.message.error {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Section Headers with User Count Badge */
+.admin-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.admin-section-header h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0;
+}
+
+.user-count {
+    background: var(--bg-elevated);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+/* Admin Table Container */
+.admin-table-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table thead {
+    background: var(--bg-elevated);
+}
+
+.admin-table th {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--border);
+}
+
+.admin-table td {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.admin-table tbody tr {
+    transition: var(--transition);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* User Info Cell with Avatar */
+.user-info-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar-small {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg-body);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* Role & Status Badges */
+.role-badge, .status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Different colors for each role */
+.role-admin {
+    background: rgba(52, 152, 219, 0.15);
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.role-student {
+    background: rgba(155, 89, 182, 0.15);
+    color: #9b59b6;
+    border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.role-alumni {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+.role-eventmanager {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border: 1px solid rgba(243, 156, 18, 0.3);
+}
+
+/* Status badges for active/suspended */
+.status-active {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid rgba(39, 174, 96, 0.3);
+}
+
+.status-suspended {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--danger);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+/* Action Buttons in Admin Table */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 0.5rem 1rem;
+    border: 1px solid;
+    border-radius: 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    background: transparent;
+    text-decoration: none;
+}
+
+/* Verify button styling */
+.btn-verify {
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.btn-verify:hover {
+    background: var(--success);
+    color: var(--bg-body);
+    transform: translateY(-1px);
+}
+
+/* Reject button styling */
+.btn-reject {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.btn-reject:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Suspend button styling */
+.btn-suspend {
+    color: var(--warning);
+    border-color: var(--warning);
+}
+
+.btn-suspend:hover {
+    background: var(--warning);
+    color: var(--bg-body);
+    transform: translateY(-1px);
+}
+
+/* Unsuspend button styling */
+.btn-unsuspend {
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.btn-unsuspend:hover {
+    background: var(--success);
+    color: var(--bg-body);
+    transform: translateY(-1px);
+}
+
+/* Delete button styling */
+.btn-delete {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.btn-delete:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Empty State when no pending users */
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+    background: var(--bg-elevated);
+    border-radius: var(--radius);
+    margin: 1rem 0;
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* =====================================================
+   9. MENTORSHIP SECTION FIXES
+   ===================================================== */
+
+/* Mentorship request cards */
+.request-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Mentorship status badges with proper colors */
+.request-status.status-pending {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border-color: var(--warning);
+}
+
+.request-status.status-approved {
+    background: var(--success-bg);
+    color: var(--success);
+    border-color: var(--success);
+}
+
+.request-status.status-rejected {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+/* Mentorship detail rows */
+.request-section .detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.request-section .detail-row:last-child {
+    border-bottom: none;
+}
+
+.request-section .detail-label {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.request-section .detail-value {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+/* =====================================================
+   MENTORSHIP SECTION - PROPER STYLING
+   ===================================================== */
+
+/* Section Description Text */
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* Search Form Styling */
+.mentorship-search-form .search-bar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.mentorship-search-form .search-bar input {
+    flex: 1;
+    max-width: 500px;
+}
+
+/* Alumni Grid Cards - Enhanced */
+.alumni-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.alumni-card {
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 2rem;
+}
+
+.alumni-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.alumni-info {
+    margin-bottom: 1.5rem;
 }
 
 .alumni-name {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
     color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .alumni-email {
     color: var(--text-secondary);
-    font-size: 13px;
-    margin-bottom: 16px;
-    word-break: break-word;
+    font-size: 0.875rem;
+    margin: 0;
 }
 
-.view-profile-btn {
-    display: block;
-    width: 100%;
-    padding: 12px 16px;
-    background: var(--accent);
-    color: var(--bg-container);
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.2s;
-}
-
-.view-profile-btn:hover {
-    background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
-}
-
-.no-results {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-secondary);
-}
-
-.no-results p {
-    margin-bottom: 20px;
-    font-size: 16px;
-}
-
-/* =====================================================
-   1️⃣2️⃣ PROFILE PAGE
-   ===================================================== */
-
-.profile-header {
-    background: var(--bg-container);
-    padding: 50px 0;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 8px var(--shadow);
-    
-}
-
-.profile-content {
+/* Mentorship Requests List - Card Layout */
+.mentorship-requests-list {
     display: flex;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 30px;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
-.profile-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    color: var(--bg-container);
-    font-size: 48px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 20px rgba(var(--shadow-rgb), 0.4);
-    flex-shrink: 0;
-}
-
-.profile-info h1 {
-    display: flex; 
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.profile-info p {
-    color: var(--text-secondary);
-    font-size: 16px;
-}
-
-.profile-details {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.profile-details h2 {
-    margin-bottom: 20px;
-}
-
-.detail-row {
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.detail-row:last-child {
-    border-bottom: none;
-}
-
-.detail-label {
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 600;
-    min-width: 120px;
-}
-
-.detail-value {
-    font-size: 14px;
-    color: var(--text-primary);
-    text-align: right;
-    flex: 1;
-}
-
-.detail-value a {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.request-section {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    box-shadow: 0 2px 8px var(--shadow);
-}
-
-.request-section h2 {
-    margin-bottom: 20px;
-}
-
-/* =====================================================
-   1️⃣3️⃣ JOB POSTINGS & LIST ITEMS
-   ===================================================== */
-
-section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto 30px;
-}
-
-.list-container {
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 30px;
-    width: 90%;
-    max-width: 1200px;
-    margin: 30px auto;
-    box-shadow: 0 4px 10px var(--shadow);
-}
-
-.list-container h3 {
-    color: var(--accent);
-    font-size: 1.5em;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--border);
-}
-
-article,
-.list-item {
-    background-color: var(--bg-input);
+.request-card {
+    background: var(--bg-surface);
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent);
-    border-radius: 8px;
-    padding: 24px;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: var(--transition);
 }
 
-article:hover,
-.list-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px var(--shadow-hover);
+.request-card:hover {
+    background: var(--bg-elevated);
     border-left-color: var(--accent-hover);
 }
 
-article h2,
-.list-item h2 {
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-size: 1.5em;
-}
-
-article p,
-.list-item p {
-    margin-bottom: 8px;
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-article p strong,
-.list-item p strong {
-    color: var(--text-secondary);
-    font-weight: 600;
-    margin-right: 8px;
-}
-
-article a,
-.list-item a {
-    color: var(--accent);
-    font-weight: 500;
-}
-
-.flex-between {
+/* Request Card Header */
+.request-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
 }
 
-.flex-between > div {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.card-link {
-    color: var(--accent);
+.request-mentor-name {
+    font-size: 1.1rem;
     font-weight: 600;
-    padding: 10px 20px;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    transition: all 0.2s;
-    display: inline-block;
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
 }
 
-.card-link:hover {
-    background-color: var(--accent);
-    color: var(--bg-container);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--shadow-rgb), 0.3);
-}
-
-/* =====================================================
-   1️⃣4️⃣ SIGN-UP / AUTH FORMS
-   ===================================================== */
-
-.sign-up,
-.Sign-up,
-.auth-container {
-    max-width: 420px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: var(--bg-container);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.sign-up h1,
-.sign-up h2,
-.Sign-up h1,
-.Sign-up h2,
-.auth-container h1,
-.auth-container h2 {
-    text-align: center;
-    margin-bottom: 25px;
+.request-mentor-name a {
     color: var(--accent);
-    width: 100%;
+    text-decoration: none;
 }
 
-.sign-up .form,
-.Sign-up .form,
-.auth-container .form {
-    max-width: 100%;
-    gap: 18px;
-}
-
-/* Optional helper text below forms */
-.auth-footer {
-    text-align: center;
-    margin-top: 20px;
-    color: var(--text-secondary);
-    font-size: 14px;
-}
-
-.auth-footer a {
-    color: var(--accent);
-    font-weight: 600;
-}
-
-.auth-footer a:hover {
+.request-mentor-name a:hover {
     color: var(--accent-hover);
+    text-decoration: underline;
 }
 
-/* =====================================================
-   1️⃣5️⃣ FOOTER
-   ===================================================== */
-
-footer {
-    background-color: var(--bg-container);
-    border-top: 1px solid var(--border);
-    padding: 20px;
-    text-align: center;
+.request-date {
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-top: 60px;
+    margin: 0;
 }
 
-footer p {
-    margin: 0;
-    font-size: 14px;
+/* Request Status Badges - Proper Colors */
+.request-status {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.request-status.status-pending {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.request-status.status-approved {
+    background: var(--success-bg);
+    color: var(--success);
+    border: 1px solid var(--success);
+}
+
+.request-status.status-rejected {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--danger);
+    border: 1px solid var(--danger);
+}
+
+/* Request Message */
+.request-message {
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--bg-elevated);
+    border-radius: var(--radius);
+}
+
+.request-message strong {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Request Actions (Approve/Reject Buttons) */
+.request-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+/* Success Button (Approve) */
+.btn-success {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #229954;
+    border-color: #229954;
+    transform: translateY(-1px);
+}
+
+/* Responsive Adjustments for Mentorship */
+@media (max-width: 768px) {
+    .mentorship-search-form .search-bar {
+        flex-direction: column;
+    }
+    
+    .mentorship-search-form .search-bar input {
+        max-width: 100%;
+    }
+    
+    .request-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .request-actions {
+        flex-direction: column;
+    }
+    
+    .request-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* =====================================================
-   1️⃣6️⃣ RESPONSIVE DESIGN
+   10. RESPONSIVE DESIGN
    ===================================================== */
 
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
+    /* Navbar responsive */
+    .navbar { 
+        flex-direction: column; 
+        gap: 1rem; 
+        padding: 1.5rem; 
     }
-
-    .navbar-links {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
+    .navbar-links { 
+        flex-direction: column; 
+        width: 100%; 
     }
-
-    .navbar-links a {
-        width: 100%;
-        text-align: center;
+    .navbar-links a { 
+        text-align: center; 
+        width: 100%; 
     }
-
-    main {
-        padding: 15px;
+    .navbar-profile { 
+        margin: 1rem 0 0; 
     }
-
-    .container,
-    .list-container,
-    section {
-        width: 95%;
-        padding: 20px;
-        margin: 15px auto;
+    
+    /* Containers responsive */
+    .container, .list-container, section { 
+        padding: 1.5rem; 
     }
-
-    .dashboard-stats {
-        flex-direction: column;
+    
+    /* Detail rows stack on mobile */
+    .detail-row { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 0.5rem; 
     }
-
-    .stat-card {
-        min-width: 100%;
+    .detail-value { 
+        text-align: left; 
     }
-
-    .search-bar {
-        flex-direction: column;
+    
+    /* Typography responsive */
+    h1 { 
+        font-size: 1.75rem; 
     }
-
-    .search-bar input,
-    .search-bar button {
-        width: 100%;
+    
+    /* Admin responsive */
+    .admin-container {
+        padding: 2rem 1rem;
     }
-
-    .alumni-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .profile-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-avatar {
-        margin: 0 auto;
-    }
-
-    .detail-row {
+    
+    .admin-section-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 1rem;
     }
-
-    .detail-value {
-        text-align: left;
+    
+    .admin-table-container {
+        overflow-x: auto;
     }
-
-    .button-container {
+    
+    .admin-table {
+        min-width: 800px;
+    }
+    
+    .action-buttons {
         flex-direction: column;
     }
-
-    .button-container .btn {
+    
+    .btn-action {
         width: 100%;
-    }
-
-    .flex-between {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .flex-between > div {
-        width: 100%;
-    }
-
-    article,
-    .list-item {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    th,
-    td {
-        padding: 10px 8px;
-    }
-
-    .sign-up,
-    .Sign-up,
-    .auth-container {
-        max-width: 95%;
-        margin: 20px auto;
-        padding: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .profile-header {
-        padding: 30px 0;
-    }
-
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        font-size: 40px;
-    }
-
-    h1 {
-        font-size: 1.75em;
-    }
-
-    .alumni-avatar {
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
-    }
-
-    .sign-up,
-    .Sign-up,
-    .auth-container {
-        max-width: 100%;
-        margin: 15px auto;
-        padding: 20px;
-    }
-
-    .sign-up .form,
-    .Sign-up .form,
-    .auth-container .form {
-        gap: 15px;
+        justify-content: center;
     }
 }

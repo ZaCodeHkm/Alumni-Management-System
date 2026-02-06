@@ -285,6 +285,65 @@ include 'navbar.php';
                 </div>
             </div>
         </div>
+<main>
+        <div class="container">
+            <h1>Alumni Search & Networking</h1>
+            <p>Search for alumni and connect via messaging.</p>
+            
+            <form class="mt-20">
+                <div class="search">
+                    <span class="search-icon material-symbols-outlined">search</span>
+                    <input class="search-input" type="search" placeholder="Search for alumni by name, field, or company...">
+                </div>
+            </form>
+        </div>
+
+       
+
+        <!-- Chat Layout (initially hidden) -->
+        <div class="main-chat-layout" id="mainLayout" style="display: none;">
+            <div class="contacts" id="contact_list">
+                <h3>Chats</h3>
+                <div class="contact active" data-user="yoshenan" onclick="selectContact(this)">
+                    <span class="avatar">YS</span>
+                    <div class="contact-info">
+                        <span class="name">Yoshenan</span>
+                        <span class="notification">Online</span>
+                    </div>
+                </div>
+
+                <div class="contact" data-user="chris" onclick="selectContact(this)">
+                    <span class="avatar">CE</span>
+                    <div class="contact-info">
+                        <span class="name">Chris Evans</span>
+                        <span class="notification">2 new messages</span>
+                    </div>
+                </div>
+
+                <div class="contact" data-user="emily" onclick="selectContact(this)">
+                    <span class="avatar">EC</span>
+                    <div class="contact-info">
+                        <span class="name">Emily Carter</span>
+                        <span class="notification">Seen 5m ago</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-wrapper" id="chatWrapper">
+                <div id="chat-box"></div>
+                <div class="input-section">
+                    <div class="input-container">
+                        <div class="input-row">
+                            <input type="text" id="user-input" placeholder="Type your message">
+                            <button class="send-btn" onclick="sendMessage('sent')">Send</button>
+                        </div>
+                        <hr style="border: 0.5px solid var(--border); width: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
     </main>
 
     <footer>

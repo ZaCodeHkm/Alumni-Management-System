@@ -1,5 +1,8 @@
+<<<<<<< Updated upstream
 <?php session_start(); ?>
 
+=======
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
 
     <?php include 'navbar.php'; ?>
 
+<<<<<<< Updated upstream
     <!--sql query to fetch event details-->
     <?php
         $host = "localhost";
@@ -88,6 +92,55 @@
 
                 <div class="button-container">
                     <a href="events.php" class="btn btn-secondary">Cancel</a>
+=======
+    <main>
+        <h1 class="page-title">Edit Event</h1>
+
+        <!-- Final version will populate form fields with current event data -->
+        <div class="container">
+            <form class="form">
+                <div class="flex-between mb-20">
+                    <h2>Event Details</h2>
+                    <a href="event-request-list.html" class="card-link">View Event Requests</a>
+                </div>
+
+                <label>Event Title</label>
+                <input id="eventTitle" type="text" placeholder="Enter event title..." required>
+
+                <label>Description</label>
+                <textarea id="eventDesc" placeholder="Enter event description..." required></textarea>
+
+                <label>Date</label>
+                <input id="eventDate" type="date" class="input-half" required>
+
+                <label>Start Time</label>
+                <input id="eventStartTime" type="time" class="input-half" required>
+
+                <label>End Time</label>
+                <input id="eventEndTime" type="time" class="input-half" required>
+
+                <label>Venue</label>
+                <input id="eventLocation" type="text" placeholder="Enter location details..." required>
+
+                <label>Type</label>
+                <select required>
+                    <option>Physical</option>
+                    <option>Online</option>
+                </select>
+
+                <label>Visibility</label>
+                <select required>
+                    <option>All</option>
+                    <option>Alumni</option>
+                    <option>Students</option>
+                </select>
+
+                <label>Capacity</label>
+                <input id="eventCapacity" type="number" placeholder="Enter event max capacity..." required>
+
+                <div class="button-container">
+                    <a href="events-admin.html" class="btn btn-secondary">Cancel</a>
+>>>>>>> Stashed changes
                     <button class="btn" type="submit">Save Changes</button>
                 </div>
             </form>
