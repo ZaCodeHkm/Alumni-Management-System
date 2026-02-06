@@ -43,7 +43,7 @@
     }
 
     $stmt = $pdo->query(query: $sql);
-
+    
     $events = $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
     ?>
 
