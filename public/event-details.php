@@ -1,8 +1,6 @@
 <?php session_start(); 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +86,23 @@
                     <?php if (($_SESSION['role'] === 'alumni') || !$isAlumniExclusive): ?>
                     <form action="event-regist.php" method="POST">
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
+                        
+                        <!-- success message display -->
+                        <?php if (!empty($_SESSION['success'])): ?>
+                            <div class="alert alert-success">
+                                <?= htmlspecialchars($_SESSION['success']) ?>
+                            </div>
+                            <?php unset($_SESSION['success']); ?>
+                        <?php endif; ?>
+                        
+                        <!-- error message display -->
+                        <?php if (!empty($_SESSION['error'])): ?>
+                            <div class="alert alert-error">
+                                <?= htmlspecialchars($_SESSION['error']) ?>
+                            </div>
+                            <?php unset($_SESSION['error']); ?>
+                        <?php endif; ?>
+
                         <button type="submit" class="btn">Join This Event</button>
                     </form>
                     <?php endif; ?>
