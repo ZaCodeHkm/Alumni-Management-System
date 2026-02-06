@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,33 +12,63 @@
 
     <?php include 'navbar.php'; ?>
 
-    <main>
-        <h1 class="page-title">Event Attendees</h1>
+    <!--sql query-->
+    <?php
+        $host = "localhost";
+        $db = "sofeng";
+        $user = "root";
+        $pass = "";
+        $event_id = $_GET['id'];
+        $role = $_SESSION['role'];
 
+    try {
+        $pdo = new PDO(
+            "mysql:host=$host;dbname=$db;charset=utf8mb4",
+            $user,
+            $pass,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+    } catch (PDOException $e) {
+        die("Database connection failed");
+    }
+
+    $sql = "SELECT 
+                user.name,
+                user.user_id,
+                user.email,
+                user.role
+            FROM user
+            JOIN event_attendance ON user.user_id = event_attendance.user_id
+            WHERE event_attendance.event_id = ?
+            ORDER BY user.name ASC";
+
+    $stmt = $pdo->prepare(query: $sql);
+    $stmt->execute(params: [$event_id]);
+    $attendees = $stmt->fetchAll(mode: PDO::FETCH_ASSOC);
+    ?>
+
+    <main>
+        <h1 class="page-title">Attendee List</h1>
+        Event ID: <?= htmlspecialchars($event_id) ?>
         <div class="container">
             <div class="flex-between">
-                <h2>CES 2026 - Attendee List</h2>
-                <a href="event-details-admin.html" class="btn btn-secondary">Back to Event</a>
+                <a href="event-details.php?id=<?= $event_id ?>" class="btn btn-secondary">Back to Event</a>
             </div>
         </div>
 
-        <!-- Placeholder information. Final version will take data from event database -->
         <section class="list-container">
-            
-            <article class="list-item">
-                <h2>Alumni</h2>
-                <p><strong>Name:</strong> <span class="attendeeName">Anwar</span></p>
-                <p><strong>ID:</strong> <span class="attendeeID">1111111111</span></p>
-                <p><strong>Email:</strong> <span>ANWAR@student.mmu.edu.my</span></p>
-            </article>
-
-            <article class="list-item">
-                <h2>Alumni</h2>
-                <p><strong>Name:</strong> <span class="attendeeName">Abdullah</span></p>
-                <p><strong>ID:</strong> <span class="attendeeID">1111111112</span></p>
-                <p><strong>Email:</strong> <span>ABDULLAH@student.mmu.edu.my</span></p>
-            </article>
-
+        <br>
+            <?php if (count($attendees) === 0): ?>
+                <p>No attendees for this event.</p>
+            <?php endif; ?>
+            <?php foreach ($attendees as $attendee): ?>
+                <article class="list-item">
+                    <h2><?= htmlspecialchars($attendee['name']) ?></h2>
+                    <p><strong>Role:</strong> <?= htmlspecialchars($attendee['role']) ?></p>
+                    <p><strong>ID:</strong> <span class="attendeeID"><?= htmlspecialchars($attendee['user_id']) ?></span></p>
+                    <p><strong>Email:</strong> <span><?= htmlspecialchars($attendee['email']) ?></span></p>
+                </article>
+            <php endforeach; ?>
         </section>
     </main>
 
