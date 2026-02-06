@@ -5,7 +5,8 @@
     <a href="home.php" class="navbar-brand">AES</a>
     
     <div class="navbar-links">
-        <a href="home.php">Events</a>
+        <a href="events.php">Events</a>
+        <a href="search.php">Search</a>
         <a href="mentorship.php">Mentorship</a>
         
         <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['alumni', 'event_manager', 'admin'])): ?>
