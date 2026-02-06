@@ -32,9 +32,15 @@
         die("Database connection failed");
     }
 
-    $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time
+    $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
             FROM event
             ORDER BY event_date ASC";
+
+    if (in_array($_SESSION['role'], ['alumni', 'admin', 'event_manager'])) {
+    $sql .= "1=1";  // Show all events
+    } else {
+        $sql .= "(is_alumni_exclusive = 0 OR is_alumni_exclusive IS NULL)";  // Show only public events
+    }
 
     $stmt = $pdo->query(query: $sql);
 
@@ -46,7 +52,7 @@
         <h1 class="page-title">Upcoming Events</h1>
 
         <!-- Event Management -->
-        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'admin' || $_SESSION['role'] === 'event_manager')): ?>  <!--admins and event managers only-->
+        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager')): ?>  <!--event managers only-->
             <div class="container">
                 <div class="flex-between">
                     <h2>Management Actions</h2>

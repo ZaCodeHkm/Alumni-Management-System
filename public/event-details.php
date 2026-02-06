@@ -54,8 +54,11 @@
                 <div class="button-container mb-20">
                     <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager')): ?>
                         <a href="event-edit.php?id=<?= $events['event_id'] ?>" class="btn">Edit Event</a>
-                        <button class="btn btn-danger" type="submit">Delete Event</button>
-                    <?php endif; ?>
+                        <form action="event-delete-action.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?');">
+                            <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
+                            <button type="submit" class="btn btn-danger">Delete Event</button>
+                        </form>
+                        <?php endif; ?>
                     <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
                         <a href="event-attendees.php" class="btn btn-secondary">View Attendees</a> 
                     <?php endif; ?>
