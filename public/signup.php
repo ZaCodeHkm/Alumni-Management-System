@@ -43,40 +43,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<h2>Sign Up</h2>
+<div class="Sign-up">
+    <h2>Sign Up</h2>
 
-<?php if ($error): ?>
-    <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
-<?php endif; ?>
+    <?php if ($error): ?>
+        <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+    <?php endif; ?>
 
-<?php if ($success): ?>
-    <p style="color:green;"><?php echo htmlspecialchars($success); ?></p>
-<?php endif; ?>
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+    <?php endif; ?>
 
-<form method="post">
+    <form method="post" class="form">
 
-    <label>Name</label><br>
-    <input type="text" name="name" required><br><br>
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" required>
+        </div>
 
-    <label>Email</label><br>
-    <input type="email" name="email" required><br><br>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
 
-    <label>Password</label><br>
-    <input type="password" name="password" required><br><br>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
 
-    <label>Confirm Password</label><br>
-    <input type="password" name="confirm_password" required><br><br>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" required>
+        </div>
 
-    <label>Role</label><br>
-    <select name="role" required>
-        <option value="student">Student</option>
-        <option value="alumni">Alumni</option>
-    </select><br><br>
+        <div class="form-group">
+            <label>Role</label>
+            <select name="role" required>
+                <option value="student">Student</option>
+                <option value="alumni">Alumni</option>
+            </select>
+        </div>
 
-    <button type="submit">Sign Up</button>
-</form>
+        <button type="submit">Sign Up</button>
+    </form>
 
-<p>Already have an account? <a href="login.php">Login</a></p>
+    <p>Already have an account? <a href="login.php">Login</a></p>
+</div>
 
 </body>
 </html>

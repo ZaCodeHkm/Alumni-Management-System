@@ -2,6 +2,9 @@
 require_once __DIR__ . '/../database/db.php';
 session_start();
 
+// Check if user is already logged in and has a role
+$current_role = isset($_SESSION['role']) ? $_SESSION['role'] : 'student';
+
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -18,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['user_id'] = $user['user_id'];
         $_SESSION['name'] = $user['name'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['role'] = $user['role'];
+        $_SESSION['role'] = $user['role']; // This is 'alumni', 'student', etc.
 
         $pdo->prepare(
             "UPDATE user SET last_login = NOW() WHERE user_id = ?"
@@ -33,27 +36,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="styles.css">
-  <title>Login</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Login | Alumni Management</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="theme-<?php echo htmlspecialchars($current_role); ?>">
 
-<h2>Login</h2>
+<div class="container" style="max-width: 400px; margin-top: 100px;">
+    <h2>Login</h2>
 
-<?php if ($error): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-<?php endif; ?>
+    <?php if ($error): ?>
+        <div class="alert alert-error"><?php echo $error; ?></div>
+    <?php endif; ?>
 
-<form method="post">
-  <input type="email" name="email" placeholder="Email" required><br><br>
-  <input type="password" name="password" placeholder="Password" required><br><br>
-  <button type="submit">Login</button>
-</form>
+    <form method="post" class="form">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="Email" required>
+        
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password" required>
+        
+        <button type="submit" class="btn">Login</button>
+    </form>
 
-<p><a href="signup.php">Create account</a></p>
+    <p style="margin-top: 20px; text-align: center;">
+        New here? <a href="signup.php">Create account</a>
+    </p>
+</div>
 
 </body>
 </html>

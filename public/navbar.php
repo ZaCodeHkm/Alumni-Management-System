@@ -1,6 +1,11 @@
+
 <?php
-// Don't start session - it should already be started by the main page
+// Get the role from the session, default to 'student' if not set
+$role = isset($_SESSION['role']) ? $_SESSION['role'] : 'student';
 ?>
+
+<body class="theme-<?php echo $role; ?>"></body>
+
 <nav class="navbar">
     <a href="home.php" class="navbar-brand">AES</a>
     

@@ -3,14 +3,12 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
-
 require_once __DIR__ . '/../database/db.php';
+require_once 'auth.php'; // Ensure require_login() exists here
+
+require_login();
+
 $userId = $_SESSION['user_id'];
-$error = '';
 $success = '';
 
 /* ================= SAVE PROFILE ================= */
@@ -30,7 +28,7 @@ if (isset($_POST['save_profile'])) {
             publications_summary = VALUES(publications_summary)
     ");
     $stmt->execute([$userId, $bio, $education, $contact, $pubSummary]);
-    $success = "Profile updated.";
+    $success = "Profile updated successfully!";
 }
 
 /* ================= ADD CAREER ================= */
@@ -53,12 +51,10 @@ if (isset($_POST['add_career'])) {
 
 /* ================= DELETE CAREER ================= */
 if (isset($_GET['delete_career'])) {
-    $stmt = $pdo->prepare("
-        DELETE FROM career_history
-        WHERE career_id = ? AND user_id = ?
-    ");
+    $stmt = $pdo->prepare("DELETE FROM career_history WHERE career_id = ? AND user_id = ?");
     $stmt->execute([$_GET['delete_career'], $userId]);
-    $success = "Career entry deleted.";
+    header("Location: profileEdit.php?msg=deleted");
+    exit;
 }
 
 /* ================= LOAD DATA ================= */
@@ -68,111 +64,131 @@ $profile = $stmt->fetch(PDO::FETCH_ASSOC) ?: [
     'bio'=>'','education'=>'','contact_info'=>'','publications_summary'=>''
 ];
 
-$stmt = $pdo->prepare("
-    SELECT * FROM career_history
-    WHERE user_id = ?
-    ORDER BY start_date DESC
-");
+$stmt = $pdo->prepare("SELECT * FROM career_history WHERE user_id = ? ORDER BY start_date DESC");
 $stmt->execute([$userId]);
 $careers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Fetch role for theme color
+$stmt = $pdo->prepare("SELECT role FROM user WHERE user_id = ?");
+$stmt->execute([$userId]);
+$userBase = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Edit My Profile</title>
+</head>
+<body class="theme-<?= htmlspecialchars($userBase['role'] ?? 'student') ?>">
 
 <?php include 'navbar.php'; ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="styles.css">
-    <title>Edit Profile</title>
-</head>
-<body>
+<main class="container">
+    <div class="profile-header">
+        <div class="profile-info">
+            <h1>Edit Your Profile</h1>
+            <p class="text-secondary">Keep your information up to date for the alumni network.</p>
+        </div>
+        <div style="margin-left: auto;">
+            <a href="profile.php" class="btn btn-secondary">View Profile</a>
+        </div>
+    </div>
 
-<h2>Edit Profile</h2>
+    <?php if ($success || isset($_GET['msg'])): ?>
+        <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <?= $success ?: "Entry removed successfully." ?>
+        </div>
+    <?php endif; ?>
 
-<?php if ($success): ?>
-<p style="color:green"><?= htmlspecialchars($success) ?></p>
-<?php endif; ?>
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3>General Information</h3>
+            <form method="post" class="auth-form" style="max-width: 100%; box-shadow: none; padding: 0;">
+                <label>Professional Bio</label>
+                <textarea name="bio" rows="5" class="input-field"><?= htmlspecialchars($profile['bio']) ?></textarea>
 
-<!-- ================= PROFILE ================= -->
-<h3>Profile Information</h3>
-<form method="post">
+                <label>Education (Highest Degree)</label>
+                <input type="text" name="education" class="input-field" value="<?= htmlspecialchars($profile['education']) ?>">
 
-    <label>Bio</label><br>
-    <textarea name="bio" rows="4"><?= htmlspecialchars($profile['bio']) ?></textarea><br><br>
+                <label>Contact Email/Phone</label>
+                <input type="text" name="contact_info" class="input-field" value="<?= htmlspecialchars($profile['contact_info']) ?>">
 
-    <label>Education</label><br>
-    <input type="text" name="education"
-        value="<?= htmlspecialchars($profile['education']) ?>"><br><br>
+                <label>Publications / Projects Summary</label>
+                <textarea name="publications_summary" rows="4" class="input-field"><?= htmlspecialchars($profile['publications_summary']) ?></textarea>
 
-    <label>Contact Information</label><br>
-    <input type="text" name="contact_info"
-        value="<?= htmlspecialchars($profile['contact_info']) ?>"><br><br>
+                <button name="save_profile" class="btn mt-2">Update Profile Info</button>
+            </form>
+        </div>
 
-    <label>Publications Summary</label><br>
-    <textarea name="publications_summary" rows="3"><?= htmlspecialchars($profile['publications_summary']) ?></textarea><br><br>
+        <div class="card">
+            <h3>Add New Experience</h3>
+            <form method="post" class="auth-form" style="max-width: 100%; box-shadow: none; padding: 0;">
+                <label>Job Title</label>
+                <input type="text" name="job_title" class="input-field" required placeholder="e.g. Software Engineer">
 
-    <button name="save_profile">Save Profile</button>
-</form>
+                <label>Company Name</label>
+                <input type="text" name="company_name" class="input-field" required placeholder="e.g. Google">
 
-<hr>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Start Date</label>
+                        <input type="date" name="start_date" class="input-field" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>End Date</label>
+                        <input type="date" name="end_date" class="input-field">
+                        <small class="text-secondary">Leave blank if current</small>
+                    </div>
+                </div>
 
-<!-- ================= CAREER LIST ================= -->
-<h3>Career History</h3>
+                <label>Job Description</label>
+                <textarea name="description" rows="3" class="input-field"></textarea>
 
-<?php if (!$careers): ?>
-<p>No career history added.</p>
-<?php else: ?>
-<table border="1" cellpadding="6">
-<tr>
-    <th>Job</th>
-    <th>Company</th>
-    <th>Duration</th>
-    <th>Description</th>
-    <th>Action</th>
-</tr>
-<?php foreach ($careers as $c): ?>
-<tr>
-    <td><?= htmlspecialchars($c['job_title']) ?></td>
-    <td><?= htmlspecialchars($c['company_name']) ?></td>
-    <td><?= $c['start_date'] ?> – <?= $c['end_date'] ?: 'Present' ?></td>
-    <td><?= nl2br(htmlspecialchars($c['description'])) ?></td>
-    <td>
-        <a href="?delete_career=<?= $c['career_id'] ?>"
-           onclick="return confirm('Delete this entry?')">
-           Delete
-        </a>
-    </td>
-</tr>
-<?php endforeach; ?>
-</table>
-<?php endif; ?>
+                <button name="add_career" class="btn mt-2">Add Career Entry</button>
+            </form>
+        </div>
+    </div>
 
-<hr>
+    <div class="card mt-3">
+        <h3>Current Career History</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role & Company</th>
+                        <th>Dates</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!$careers): ?>
+                        <tr><td colspan="3" class="text-secondary">No history found.</td></tr>
+                    <?php else: ?>
+                        <?php foreach ($careers as $c): ?>
+                        <tr>
+                            <td>
+                                <strong><?= htmlspecialchars($c['job_title']) ?></strong> at <?= htmlspecialchars($c['company_name']) ?>
+                            </td>
+                            <td><?= $c['start_date'] ?> – <?= $c['end_date'] ?: 'Present' ?></td>
+                            <td>
+                                <a href="?delete_career=<?= $c['career_id'] ?>" 
+                                   class="text-danger" 
+                                   onclick="return confirm('Delete this entry?')">Delete</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
-<!-- ================= ADD CAREER ================= -->
-<h3>Add Career Entry</h3>
-
-<form method="post">
-    <label>Job Title</label><br>
-    <input type="text" name="job_title" required><br><br>
-
-    <label>Company</label><br>
-    <input type="text" name="company_name" required><br><br>
-
-    <label>Start Date</label><br>
-    <input type="date" name="start_date" required><br><br>
-
-    <label>End Date</label><br>
-    <input type="date" name="end_date"><br><br>
-
-    <label>Description</label><br>
-    <textarea name="description" rows="3"></textarea><br><br>
-
-    <button name="add_career">Add Career</button>
-</form>
-
-<br>
-<a href="profile.php">Back to Profile</a>
+<footer class="mt-3">
+    <p>&copy; 2026 Alumni Portal</p>
+</footer>
 
 </body>
 </html>
