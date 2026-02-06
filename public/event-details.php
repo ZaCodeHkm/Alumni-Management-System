@@ -45,12 +45,12 @@
 
     <main>
         <div class="container">
-            <h1 id="detail-title">CES 2026</h1>
+            <h1 id="detail-title"><?= htmlspecialchars($events['title']) ?></h1>
 
             <section class="details-section">
                 <h3>Event Information</h3>
 
-                <!-- Admin/ Event Manager Action Buttons -->
+                <!-- Event Manager Action Buttons -->
                 <div class="button-container mb-20">
                     <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager')): ?>
                         <a href="event-edit.php?id=<?= $events['event_id'] ?>" class="btn">Edit Event</a>
@@ -59,8 +59,11 @@
                             <button type="submit" class="btn btn-danger">Delete Event</button>
                         </form>
                         <?php endif; ?>
-                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can only view attendees -->
-                        <a href="event-attendees.php" class="btn btn-secondary">View Attendees</a> 
+                    <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === 'event_manager' || $_SESSION['role'] === 'admin')): ?> <!-- admin can also view attendees -->
+                        <form action="event-attendees.php?id=<?= $events['event_id'] ?>" method="POST">
+                            <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
+                            <button type="submit" class="btn btn-secondary">View Attendees</button>
+                        </form>
                     <?php endif; ?>
                 </div>
                         
@@ -81,10 +84,10 @@
             </section>
 
             <section class="details-section">
-                <p class="creation-details">Created by: Event Manager</p>
-                <p class="creation-details">Created at: February 20, 2025</p>
-                <p class="approval-details">Approved by: Event Manager</p>
-                <p class="approval-details">Approved at: March 27, 2025</p>
+                <p class="creation-details">Created by: <?= htmlspecialchars($events['created_by']) ?></p>
+                <p class="creation-details">Created at: <?= htmlspecialchars($events['created_at']) ?></p>
+                <p class="approval-details">Approved by: <?= htmlspecialchars($events['approved_by']) ?></p>
+                <p class="approval-details">Approved at: <?= htmlspecialchars($events['approved_at']) ?></p>
             </section>
 
             <section class="comments-section">

@@ -32,15 +32,15 @@
         die("Database connection failed");
     }
 
-    $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
+    if ($_SESSION['role'] === 'student') {
+        $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
+                FROM event
+                WHERE is_alumni_exclusive = 0 OR is_alumni_exclusive IS NULL
+                ORDER BY created_at DESC";}
+    elseif ($_SESSION['role'] === 'alumni' || $_SESSION['role'] === 'event_manager') {
+        $sql = "SELECT event_id, title, description, event_date, location, start_time, end_time, is_alumni_exclusive
             FROM event
-            ORDER BY event_date ASC";
-
-    if (in_array($_SESSION['role'], ['alumni', 'admin', 'event_manager'])) {
-    $sql .= "1=1";  // Show all events
-    } else {
-        $sql .= "(is_alumni_exclusive = 0 OR is_alumni_exclusive IS NULL)";  // Show only public events
-    }
+            ORDER BY created_at DESC";}
 
     $stmt = $pdo->query(query: $sql);
     
