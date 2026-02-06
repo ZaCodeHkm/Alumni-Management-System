@@ -11,18 +11,14 @@ require_login();
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="styles.css">
     <title>Home</title>
 </head>
 <body>
 
 <h2>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?>!</h2>
 
-<p>This is the homepage.</p>
-    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="user_check.php" style="text-decoration:none; color:black; font-weight:bold;">
-            Admin
-        </a>
-    <?php endif; ?>
+
 
 <a href="logout.php">Logout</a>
 

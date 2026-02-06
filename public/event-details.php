@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!--navbar-->
+
     <?php include 'navbar.php'; ?>
     <!--sql query to fetch event details-->
     <?php
@@ -45,12 +45,10 @@
 
     <main>
         <div class="container">
-            <h1 id="detail-title"><?= htmlspecialchars($events[0]['title']) ?></h1>
+            <h1 id="detail-title">CES 2026</h1>
 
             <section class="details-section">
                 <h3>Event Information</h3>
-
-                <p><a href="event-attendees.php?id=<?= $events['event_id'] ?>">View Event Attendees</a></p>
 
                 <!-- Admin/ Event Manager Action Buttons -->
                 <div class="button-container mb-20">
@@ -76,18 +74,14 @@
                         <input type="hidden" name="event_id" value="<?= htmlspecialchars($events['event_id']) ?>">
                         <button type="submit" class="btn">Join This Event</button>
                     </form>
-                <?php else: ?>
-                    <p class="error-message">Thanks for your interest! This event is currently open to alumni only.</p>
                 <?php endif; ?>
             </section>
-                    <?php echo "!FOR TESTING! Event ID: " . htmlspecialchars($events['event_id']); ?>
-
 
             <section class="details-section">
-                <p class="creation-details">Created by: <?= htmlspecialchars($_SESSION['role'])?> #<?= htmlspecialchars($events['created_by']) ?></p>
-                <p class="creation-details">Created at: <?= htmlspecialchars($events['created_at']) ?></p>
-                <p class="approval-details">Approved by: EM #<?= htmlspecialchars($events['approved_by']) ?></p>
-                <p class="approval-details">Approved at: <?= htmlspecialchars($events['approved_at']) ?></p>
+                <p class="creation-details">Created by: Event Manager</p>
+                <p class="creation-details">Created at: February 20, 2025</p>
+                <p class="approval-details">Approved by: Event Manager</p>
+                <p class="approval-details">Approved at: March 27, 2025</p>
             </section>
 
             <section class="comments-section">
