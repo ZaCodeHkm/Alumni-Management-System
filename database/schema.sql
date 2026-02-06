@@ -120,3 +120,15 @@ CREATE TABLE JobPosting (
     FOREIGN KEY (posted_by) REFERENCES User(user_id),
     FOREIGN KEY (approved_by) REFERENCES User(user_id)
 );
+
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments (
+    comment_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (event_id) REFERENCES event(event_id)
+);

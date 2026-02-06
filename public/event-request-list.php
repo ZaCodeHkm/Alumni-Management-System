@@ -65,6 +65,9 @@
                     
                     <!-- Buttons -->
                     <form action="event-request-action.php" method="POST" class="button-container">
+                        
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+
                         <input type="hidden" name="event_id" value="<?= $event['event_id'] ?>">
 
                         <button type="submit" name="action" value="approve" class="btn">Approve</button>

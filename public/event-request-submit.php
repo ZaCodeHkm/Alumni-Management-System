@@ -35,7 +35,8 @@ $event_id = $pdo->lastInsertId();
     Event ID is: <?= htmlspecialchars($event_id); ?>
     User ID is: <?= htmlspecialchars($user_id); ?>
 
-    <a href="events.php">Return to Events Page</a>
+    <?php header('Location: events.php'); 
+        exit()?>
 </body>
 
 </html>
