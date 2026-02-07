@@ -49,7 +49,6 @@
     ?>
 
     <main>
-        <?php echo "!FOR TESTING! User role: " . htmlspecialchars($_SESSION['role']); ?>
         <h1 class="page-title">Upcoming Events</h1>
 
         <!-- Event Management -->

@@ -14,48 +14,44 @@
         <h1 class="page-title">Create Event</h1>
 
         <div class="container">
-            <form class="form">
-                <div class="flex-between mb-20">
-                    <h2>Event Details</h2>
-                    <a href="event-request-list.php" class="card-link">View Event Requests</a>
-                </div>
-
-                <label>Event Title</label>
-                <input id="eventTitle" type="text" placeholder="Enter event title..." required>
-
-                <label>Description</label>
-                <textarea id="eventDesc" placeholder="Enter event description..." required></textarea>
+            <form action="event-create-submit.php" method="POST" class="form">
+                <h2>Event Creation Form</h2>
+                
+                <label>Event Name</label>
+                <input type="text" name="event_title" placeholder="Enter event name..." required>
 
                 <label>Date</label>
-                <input id="eventDate" type="date" class="input-half" required>
+                <input type="date" name="event_date" class="input-half" required>
 
                 <label>Start Time</label>
-                <input id="eventStartTime" type="time" class="input-half" required>
+                <input type="time" name="start_time" class="input-half" required>
 
-                <label>End Time</label>
-                <input id="eventEndTime" type="time" class="input-half" required>
+                <label>End Time</label>   
+                <input type="time" name="end_time" class="input-half" required>
 
-                <label>Venue</label>
-                <input id="eventLocation" type="text" placeholder="Enter location details..." required>
+                <label>Capacity</label>
+                <input type="number" name="capacity" class="input-half" required>
+
+                <label>Location</label>
+                <input type="text" name="location" placeholder="Enter location..." required>
+
+                <label>Description</label>
+                <textarea name="description" placeholder="Describe your event..." required></textarea>
 
                 <label>Type</label>
-                <select required>
-                    <option>Physical</option>
-                    <option>Online</option>
+                <select name="event_type" required>
+                    <option value="physical">Physical</option>
+                    <option value="online">Online</option>
                 </select>
 
                 <label>Visibility</label>
-                <select required>
-                    <option>All</option>
-                    <option>Alumni</option>
-                    <option>Students</option>
+                <select name="is_alumni_exclusive" required>
+                    <option value="0">All</option>
+                    <option value="1">Alumni</option>
                 </select>
 
-                <label>Capacity</label>
-                <input id="eventCapacity" type="number" placeholder="Enter event max capacity..." required>
-
                 <div class="button-container">
-                    <a href="events-admin.html" class="btn btn-secondary">Cancel</a>
+                    <a href="events.php" class="btn btn-secondary">Cancel</a>
                     <button class="btn" type="submit">Create Event</button>
                 </div>
             </form>
