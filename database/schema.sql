@@ -105,9 +105,9 @@ CREATE TABLE career_history (
 );
 
 
-DROP TABLE IF EXISTS JobPosting;
+DROP TABLE IF EXISTS jobposting;
 
-CREATE TABLE JobPosting (
+CREATE TABLE jobposting (
     job_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,

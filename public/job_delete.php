@@ -10,7 +10,7 @@ $userRole = $_SESSION['role'];
 $userId = $_SESSION['user_id'];
 
 // Fetch job to check ownership
-$stmt = $pdo->prepare("SELECT * FROM JobPosting WHERE job_id = ?");
+$stmt = $pdo->prepare("SELECT * FROM jobposting WHERE job_id = ?");
 $stmt->execute([$jobId]);
 $job = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,7 @@ if (!$canDelete) {
 }
 
 // Delete the job
-$stmt = $pdo->prepare("DELETE FROM JobPosting WHERE job_id = ?");
+$stmt = $pdo->prepare("DELETE FROM jobposting WHERE job_id = ?");
 $stmt->execute([$jobId]);
 
 header("Location: job_list.php");

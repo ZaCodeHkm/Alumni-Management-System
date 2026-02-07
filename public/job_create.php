@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
         $stmt = $pdo->prepare("
-            INSERT INTO JobPosting 
+            INSERT INTO jobposting 
             (title, description, company_name, posted_by, status, approved_by)
             VALUES (?, ?, ?, ?, ?, ?)
         ");

@@ -327,7 +327,9 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p>Connect with fellow alumni, find mentorship opportunities, and explore career paths. Your professional network starts here.</p>
     <div class="hero-actions">
         <a href="mentorship.php" class="btn-hero btn-primary">Find a Mentor</a>
-        <a href="job_list.php" class="btn-hero btn-outline">Browse Jobs</a>
+        <?php if (isset($_SESSION['role']) && in_array($_SESSION['role'], ['alumni', 'event_manager', 'admin'])): ?>
+            <a href="job_list.php" class="btn-hero btn-outline">Browse Jobs</a>
+        <?php endif; ?>
     </div>
 </div>
 

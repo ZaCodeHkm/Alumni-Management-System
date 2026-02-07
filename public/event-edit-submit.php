@@ -36,7 +36,8 @@ $stmt->execute([$event_title, $description, $event_date, $location, $type, $star
     Event ID is: <?= htmlspecialchars($event_id); ?>
     User ID is: <?= htmlspecialchars($user_id); ?>
 
-    <a href="event-details.php?id=<?= $event_id ?>">Return to Event Details</a>
+    <?php header('Location: event-details.php'); 
+        exit()?>
 </body>
 
 </html>

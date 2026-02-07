@@ -10,7 +10,7 @@ $userRole = $_SESSION['role'];
 $userId = $_SESSION['user_id'];
 
 // Fetch job details
-$stmt = $pdo->prepare("SELECT * FROM JobPosting WHERE job_id = ?");
+$stmt = $pdo->prepare("SELECT * FROM jobposting WHERE job_id = ?");
 $stmt->execute([$jobId]);
 $job = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
         $stmt = $pdo->prepare("
-            UPDATE JobPosting 
+            UPDATE jobposting 
             SET title = ?, description = ?, company_name = ?, availability = ?
             WHERE job_id = ?
         ");
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = "Job updated successfully!";
         
         // Refresh job data
-        $stmt = $pdo->prepare("SELECT * FROM JobPosting WHERE job_id = ?");
+        $stmt = $pdo->prepare("SELECT * FROM jobposting WHERE job_id = ?");
         $stmt->execute([$jobId]);
         $job = $stmt->fetch(PDO::FETCH_ASSOC);
         

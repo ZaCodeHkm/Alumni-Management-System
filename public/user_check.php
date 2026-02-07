@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $pdo->prepare("DELETE FROM Event WHERE created_by = ?");
                 $stmt->execute([$user_id]);
                 
-                $stmt = $pdo->prepare("DELETE FROM JobPosting WHERE posted_by = ?");
+                $stmt = $pdo->prepare("DELETE FROM jobposting WHERE posted_by = ?");
                 $stmt->execute([$user_id]);
                 
                 $stmt = $pdo->prepare("DELETE FROM MentorshipRequest WHERE mentor_id = ? OR mentee_id = ?");

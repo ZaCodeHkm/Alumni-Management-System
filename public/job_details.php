@@ -224,6 +224,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'applied') {
                 </div>
             <?php endif; ?>
 
+
         <?php elseif (!$isAvailable): ?>
             <div class="apply-section">
                 <h3>Position Filled</h3>
@@ -244,6 +245,8 @@ if (isset($_GET['success']) && $_GET['success'] === 'applied') {
 
         <div class="button-container">
             <a href="job_list.php" class="btn btn-secondary">← Back to Jobs</a>
+            <a href="job_edit.php?id=<?= $job['job_id'] ?>" class="btn">Edit Job</a>
+            <a href="job_delete.php?id=<?= $job['job_id'] ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this job posting?')">Delete Job</a>
         </div>
 
     </div>

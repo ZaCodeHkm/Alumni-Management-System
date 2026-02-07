@@ -11,7 +11,7 @@ $action = $_GET['action'] ?? '';
 
 if ($action === 'approve') {
     $stmt = $pdo->prepare("
-        UPDATE JobPosting 
+        UPDATE jobposting 
         SET status = 'approved', 
             approved_by = ?
         WHERE job_id = ?
@@ -20,7 +20,7 @@ if ($action === 'approve') {
     
 } elseif ($action === 'reject') {
     $stmt = $pdo->prepare("
-        UPDATE JobPosting 
+        UPDATE jobposting 
         SET status = 'rejected'
         WHERE job_id = ?
     ");
